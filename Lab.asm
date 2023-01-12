@@ -67,7 +67,7 @@ _start:
         mov    edx, length2    ; message string length
         syscall
         dec r10d
-        jns .fi
+        jnz .fi
 
         
     
