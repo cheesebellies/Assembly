@@ -9,7 +9,7 @@ total equ 5
 
 
 pnum:
-    add esp, 4
+    POP rdx
     POP rdx
     mov r8, 10
     xor rdx, rdx
