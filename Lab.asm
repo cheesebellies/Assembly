@@ -64,7 +64,7 @@ _start:
         ;syscall
         ;dec r10d
         ;jnz .fi
-    mov rax, 99
+    mov rax, 101
     PUSH rax
     pnum:
     POP rax
