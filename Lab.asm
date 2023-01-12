@@ -33,7 +33,7 @@ _start:
     syscall
     mov rax, 2 ; first param
     mov rbx, 2 ; second param
-    mov rcx, 4 ; loop count
+    mov rcx, 6 ; loop count
     top:
     imul rbx, rax
     loop top ; loop instruction
