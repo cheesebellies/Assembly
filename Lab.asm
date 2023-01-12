@@ -64,7 +64,7 @@ _start:
         ;syscall
         ;dec r10d
         ;jnz .fi
-    mov rax, 9
+    mov rax, 99
     mov rcx, 100
     xor rdx, rdx
     div rcx
