@@ -84,7 +84,7 @@ _start:
         ;jnz .fi
     mov rax, 101
     PUSH rax
-    call 
+    call pnum
 
 
 
