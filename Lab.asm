@@ -74,7 +74,7 @@ _start:
     mov rax, 24
     mov r10d, 5
     xor rdx, rdx
-    div r10d
+    div rax, r10d
     mov [rbval], rdx
     mov    rax, 1        ; sys_write
     mov    rdi, 1        ; stdout
