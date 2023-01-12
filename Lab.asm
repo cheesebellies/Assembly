@@ -76,8 +76,9 @@ _start:
     mov    rsi, rbval    ; message address
     mov    rdx, rblen    ; message string length
     syscall
-    mov rax, rax
+    dec rax
     jns pnum
+    inc rax
 
 
 
