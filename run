@@ -1,3 +1,5 @@
+git fetch --all
+git reset --hard origin/main
 rm comp/* &>/dev/null
 ./compile
 cd comp
