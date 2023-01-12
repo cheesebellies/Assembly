@@ -32,11 +32,11 @@ section .text                               ;Main code
             div r8                          ;Divide rdx by r8, remainder goes into rdx, quotient into rax
             add rdx, 48                     ;Add 48 to remainder so the number will function with 
             PUSH rax                        ;Save rax to the stack so it isn't overwritten by printing function
-            mov [rbval], rdx                ;Save remainder of division to variable, for printing
+            mov [pnum_tnum], rdx            ;Save remainder of division to variable, for printing
             mov    rax, 1                   ;System write code
             mov    rdi, 1                   ;Stdout code
-            mov    rsi, rbval               ;Message to be sent, in this case, rdx
-            mov    rdx, rblen               ;Message length
+            mov    rsi, pnum_tnum           ;Message to be sent, in this case, rdx
+            mov    rdx, pnum_tnum_len       ;Message length
             syscall                         ;Print message
             POP rax                         ;Retrieve saved quotient
             mov r8, rax                     ;Save rax to r8
