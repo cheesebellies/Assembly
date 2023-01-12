@@ -65,20 +65,24 @@ _start:
         ;dec r10d
         ;jnz .fi
     mov rax, 99
+    PUSH rax
     pnum:
+    POP rax
     mov r8d, 10
     xor rdx, rdx
     div r8d
     add rdx, 48
+    PUSH rax
     mov [rbval], rdx
     mov    rax, 1        ; sys_write
     mov    rdi, 1        ; stdout
     mov    rsi, rbval    ; message address
     mov    rdx, rblen    ; message string length
     syscall
-    dec rax
-    jns pnum
-    inc rax
+    POP rax
+    mov r8d, rax
+    PUSH r8d
+    jnz pnum
 
 
 
