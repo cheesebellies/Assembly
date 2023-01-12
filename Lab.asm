@@ -68,9 +68,9 @@ _start:
     PUSH rax
     pnum:
     POP rax
-    mov r8d, 10
+    mov r8, 10
     xor rdx, rdx
-    div r8d
+    div r8
     add rdx, 48
     PUSH rax
     mov [rbval], rdx
@@ -80,8 +80,8 @@ _start:
     mov    rdx, rblen    ; message string length
     syscall
     POP rax
-    mov r8d, rax
-    PUSH r8d
+    mov r8, rax
+    PUSH r8
     jnz pnum
 
 
