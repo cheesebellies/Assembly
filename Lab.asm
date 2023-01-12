@@ -72,8 +72,9 @@ _start:
         ;dec r10d
         ;jnz .fi
     mov rax, 24
+    mov r10d, 5
     xor rdx, rdx
-    div 5
+    div r10d
     mov [rbval], rdx
     mov    rax, 1        ; sys_write
     mov    rdi, 1        ; stdout
