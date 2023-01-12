@@ -83,8 +83,6 @@ _start:
     call sys_exit
 
         
-    
-
     sys_exit:
         mov    eax, 60        ; sys_exit
         mov    rdi, 0            ; return 0 (success)
