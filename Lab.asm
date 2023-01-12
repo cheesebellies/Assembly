@@ -51,6 +51,7 @@ _start:
         mov    rsi, message    ; message address
         mov    edx, length    ; message string length
         syscall
+        mov r10d, 5
         jmp .fi
     .else:
         mov    eax, 1        ; sys_write
@@ -58,7 +59,16 @@ _start:
         mov    rsi, message2    ; message address
         mov    edx, length2    ; message string length
         syscall
+        mov r10d, 5
     .fi:
+        mov    eax, 1        ; sys_write
+        mov    edi, 1        ; stdout
+        mov    rsi, message2    ; message address
+        mov    edx, length2    ; message string length
+        syscall
+        dec r10d
+        jns .fi
+
         
     
 
