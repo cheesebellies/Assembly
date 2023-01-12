@@ -7,6 +7,13 @@ section .text
 len equ 0xFF
 total equ 5
 
+print:
+    mov    eax, 1        ; sys_write
+    mov    edi, 1        ; stdout
+    mov    rsi, r10d    ; message address
+    mov    edx, r11d
+    syscall
+
 _start:
 
     ; sys_write(stdout, message, length)
@@ -68,6 +75,10 @@ _start:
         syscall
         dec r10d
         jnz .fi
+    
+    mv r10d, message
+    mv r11d, length
+    call print
 
     call sys_exit
 
