@@ -64,7 +64,7 @@ _start:
         mov    eax, 1        ; sys_write
         mov    edi, 1        ; stdout
         mov    rsi, message2    ; message address
-        mov    edx, length2    ; message string length
+        mov    edx, [$-message2]    ; message string length
         syscall
         dec r10d
         jnz .fi
