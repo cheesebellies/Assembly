@@ -64,7 +64,7 @@ _start:
         mov    eax, 1        ; sys_write
         mov    edi, 1        ; stdout
         mov    rsi, message2    ; message address
-        mov    edx, [$-message2]    ; message string length
+        mov    edx, length2    ; message string length
         syscall
         dec r10d
         jnz .fi
@@ -87,6 +87,6 @@ section .data
     message: db 'Hello, world!',0x0A    ; message and newline
     length:    equ    $-message        ; NASM definition pseudo-instruction
     message2: db 'Written in Assembly!',0x0A    ; message and newline
-    length2:    equ    $-message        ; NASM definition pseudo-instruction
+    length2:    equ    $-message2        ; NASM definition pseudo-instruction
 
 ;connected to github
