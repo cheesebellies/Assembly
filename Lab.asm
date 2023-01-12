@@ -9,7 +9,7 @@ total equ 5
 
 
 pnum:
-    POP ebx
+    pop ebx
     POP rdx
     mov r8, 10
     xor rdx, rdx
@@ -26,7 +26,7 @@ pnum:
     mov r8, rax
     PUSH r8
     cmp rax, 0
-    PUSH ebx
+    push ebx
     jnz pnum
 
 _start:
