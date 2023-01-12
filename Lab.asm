@@ -72,10 +72,10 @@ _start:
         ;dec r10d
         ;jnz .fi
     mov rax, 24
-    mov r10d, 5
+    mov rcx, 5
     xor rdx, rdx
-    div rax, r10d
-    mov [rbval], rdx
+    div rcx
+    mov [rbval], rax
     mov    rax, 1        ; sys_write
     mov    rdi, 1        ; stdout
     mov    rsi, rbval    ; message address
