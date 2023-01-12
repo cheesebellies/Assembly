@@ -10,6 +10,8 @@
 ;
 ; DATE - Started Jan. 12, 2023
 ;
+; ISSUES - Don't use negative or decimal values when inputting numbers.
+;
 ; DESCRIPTION - Simple mathematic algorithms including 
 ;               factoring, GCD, exponents, finding 
 ;               digits, printing digits, and counting 
