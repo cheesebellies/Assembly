@@ -64,16 +64,20 @@ _start:
         ;syscall
         ;dec r10d
         ;jnz .fi
-    mov rax, 49
-    mov rcx, 100
+    mov rax, 99
+    pnum:
     xor rdx, rdx
-    div rcx
+    div 10
+    add rdx, 48
     mov [rbval], rdx
     mov    rax, 1        ; sys_write
     mov    rdi, 1        ; stdout
     mov    rsi, rbval    ; message address
     mov    rdx, rblen    ; message string length
     syscall
+    mov rax, rax
+    jnz pnum
+    
 
 
     call sys_exit
