@@ -8,23 +8,25 @@ len equ 0xFF
 total equ 5
 
 pnum:
-    POP rax
-    mov r8, 10
-    xor rdx, rdx
-    div r8
-    add rdx, 48
-    PUSH rax
-    mov [rbval], rdx
-    mov    rax, 1        ; sys_write
-    mov    rdi, 1        ; stdout
-    mov    rsi, rbval    ; message address
-    mov    rdx, rblen    ; message string length
-    syscall
-    POP rax
-    mov r8, rax
-    PUSH r8
-    cmp rax, 0
-    jnz pnum
+    mov rax, [esp+4]
+    pnumworker:
+        POP rax
+        mov r8, 10
+        xor rdx, rdx
+        div r8
+        add rdx, 48
+        PUSH rax
+        mov [rbval], rdx
+        mov    rax, 1        ; sys_write
+        mov    rdi, 1        ; stdout
+        mov    rsi, rbval    ; message address
+        mov    rdx, rblen    ; message string length
+        syscall
+        POP rax
+        mov r8, rax
+        PUSH r8
+        cmp rax, 0
+        jnz pnumworker
     ret
 
 
