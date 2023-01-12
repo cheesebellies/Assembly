@@ -77,7 +77,7 @@ _start:
     mov    rdx, rblen    ; message string length
     syscall
     mov rax, rax
-    jnz pnum
+    jns pnum
 
 
 
