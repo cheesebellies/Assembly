@@ -20,6 +20,9 @@ global _start                               ;Linker instructions
 
 section .data                               ;Data for use in program
 
+pnum_tnum: times 64 db 0                    ;Save number printing variable with a buffer
+pnum_tnum_len: equ $-pnum_tnum              ;Save the length of pnum_tnum
+
 section .text                               ;Main code
 
 
@@ -33,10 +36,10 @@ section .text                               ;Main code
             add rdx, 48                     ;Add 48 to remainder so the number will function with 
             PUSH rax                        ;Save rax to the stack so it isn't overwritten by printing function
             mov [pnum_tnum], rdx            ;Save remainder of division to variable, for printing
-            mov    rax, 1                   ;System write code
-            mov    rdi, 1                   ;Stdout code
-            mov    rsi, pnum_tnum           ;Message to be sent, in this case, rdx
-            mov    rdx, pnum_tnum_len       ;Message length
+                mov rax, 1                  ;System write code
+                mov rdi, 1                  ;Stdout code
+                mov rsi, pnum_tnum          ;Message to be sent, in this case, rdx
+                mov rdx, pnum_tnum_len      ;Message length
             syscall                         ;Print message
             POP rax                         ;Retrieve saved quotient
             mov r8, rax                     ;Save rax to r8
