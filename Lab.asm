@@ -27,7 +27,6 @@ pnum:
     PUSH r8
     cmp rax, 0
     jnz pnum
-    ret
 
 _start:
 
