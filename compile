@@ -1,0 +1,4 @@
+rm Lab.o lab &>/dev/null
+nasm -f elf64 -F dwarf -g Lab.asm
+mv Lab.o comp/Lab.o
+ld -m elf_x86_64 -o comp/lab comp/Lab.o

@@ -1,0 +1,4 @@
+rm comp/* &>/dev/null
+./compile
+cd comp
+./lab
