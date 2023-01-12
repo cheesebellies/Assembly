@@ -9,6 +9,7 @@ total equ 5
 
 
 
+
 _start:
 
     ; sys_write(stdout, message, length)
@@ -82,6 +83,8 @@ _start:
         syscall
 
 section .data
+    factorialNum: db 24
+    factorialNumLoc: equ $-factorialNum
     rbval: db 0
     rblen: equ $-rbval
     BUFSIZE: db 0xFF
