@@ -40,13 +40,6 @@ _start:
     top:
     imul rbx, rax
     loop top ; loop instruction
-    
-    mov [rbval], rbx
-    mov    rax, 1        ; sys_write
-    mov    rdi, 1        ; stdout
-    mov    rsi, rbval    ; message address
-    mov    rdx, rblen    ; message string length
-    syscall
     cmp rbx, 32		;compares a with 2, does effectively a-2 
     jne .else         ;if the result would not be zero, goto .else 
         mov    eax, 1        ; sys_write
