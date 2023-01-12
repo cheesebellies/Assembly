@@ -73,7 +73,7 @@ _start:
         jnz .fi
     mov rdx, 24
     mov rax, 5
-    mov [rbval], rbx
+    mov [rbval], rdx
     mov    rax, 1        ; sys_write
     mov    rdi, 1        ; stdout
     mov    rsi, rbval    ; message address
