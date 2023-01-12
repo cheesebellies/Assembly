@@ -69,13 +69,15 @@ _start:
         dec r10d
         jnz .fi
 
+    call sys_exit
+
         
     
 
-    ; sys_exit(return_code)
-    mov    eax, 60        ; sys_exit
-    mov    rdi, 0            ; return 0 (success)
-    syscall
+    sys_exit:
+        mov    eax, 60        ; sys_exit
+        mov    rdi, 0            ; return 0 (success)
+        syscall
 
 section .data
     rbval: db 0
