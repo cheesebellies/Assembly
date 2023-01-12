@@ -71,8 +71,8 @@ _start:
         syscall
         dec r10d
         jnz .fi
-    mv rdx, 24
-    mv rax, 5
+    mov rdx, 24
+    mov rax, 5
     mov [rbval], rbx
     mov    rax, 1        ; sys_write
     mov    rdi, 1        ; stdout
