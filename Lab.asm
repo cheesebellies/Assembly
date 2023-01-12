@@ -71,6 +71,20 @@ _start:
         syscall
         dec r10d
         jnz .fi
+    mv rdx, 24
+    mv rax, 5
+    mov [rbval], rbx
+    mov    rax, 1        ; sys_write
+    mov    rdi, 1        ; stdout
+    mov    rsi, rbval    ; message address
+    mov    rdx, rblen    ; message string length
+    syscall
+
+
+
+    .exit:
+    
+
 
     call sys_exit
 
