@@ -79,7 +79,7 @@ _start:
     mov    rax, 1        ; sys_write
     mov    rdi, 1        ; stdout
     mov    rsi, rbval    ; message address
-    mov    rdx, rblen    ; message string length
+    mov    rdx, 0xFF    ; message string length
     syscall
 
 
