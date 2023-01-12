@@ -66,8 +66,9 @@ _start:
         ;jnz .fi
     mov rax, 99
     pnum:
+    mov r8d, 10
     xor rdx, rdx
-    div 10
+    div r8d
     add rdx, 48
     mov [rbval], rdx
     mov    rax, 1        ; sys_write
@@ -77,7 +78,7 @@ _start:
     syscall
     mov rax, rax
     jnz pnum
-    
+
 
 
     call sys_exit
