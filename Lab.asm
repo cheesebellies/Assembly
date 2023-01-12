@@ -82,7 +82,8 @@ _start:
     POP rax
     mov r8, rax
     PUSH r8
-    jne pnum
+    cmp rax, 1
+    jle pnum
 
 
 
