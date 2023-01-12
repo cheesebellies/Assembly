@@ -75,12 +75,9 @@ _start:
     mov rcx, 5
     xor rdx, rdx
     div rcx
-    mov [rbval], rax
-    mov    rax, 1        ; sys_write
-    mov    rdi, 1        ; stdout
-    mov    rsi, rbval    ; message address
-    mov    rdx, rblen    ; message string length
-    syscall    
+    mov    eax, 60        ; sys_exit
+    mov    rdi, rdx            ; return 0 (success)
+    syscall   
 
 
     call sys_exit
