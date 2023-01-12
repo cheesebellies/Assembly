@@ -71,8 +71,8 @@ _start:
     mov [rbval], rdx
     mov    rax, 1        ; sys_write
     mov    rdi, 1        ; stdout
-    mov    rsi, message    ; message address
-    mov    rdx, length    ; message string length
+    mov    rsi, rbval    ; message address
+    mov    rdx, rblen    ; message string length
     syscall
 
 
@@ -87,7 +87,7 @@ _start:
 section .data
     factorialNum: db 24
     factorialNumLoc: equ $-factorialNum
-    rbval: db 0
+    rbval: times 0xFF db 0
     rblen: equ $-rbval
     BUFSIZE: db 0xFF
     stdinres: times 0xFF db 0
