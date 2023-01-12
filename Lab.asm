@@ -78,12 +78,7 @@ _start:
     mov    rdi, 1        ; stdout
     mov    rsi, rbval    ; message address
     mov    rdx, rblen    ; message string length
-    syscall
-
-
-
-    .exit:
-    
+    syscall    
 
 
     call sys_exit
