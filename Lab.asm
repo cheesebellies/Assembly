@@ -8,7 +8,8 @@ len equ 0xFF
 total equ 5
 
 pnum:
-    mov rax, [esp+4]
+    POP r11
+    POP rax
     pnumworker:
         POP rax
         mov r8, 10
@@ -27,6 +28,7 @@ pnum:
         PUSH r8
         cmp rax, 0
         jnz pnumworker
+    PUSH r11
     ret
 
 
