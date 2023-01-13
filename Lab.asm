@@ -37,10 +37,6 @@ section .text                               ;Main code
         call cdigits
         call pow
         POP r9
-        mov eax, 60
-        POP r8
-        mov rdi, r8
-        syscall
         pnumwork:                           ;Looping function, to prevent POP rbx from looping
             POP rax                         ;Get integer from the stack
             mov rdx, 0                      ;Clear rdx
