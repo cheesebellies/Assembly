@@ -94,7 +94,7 @@ section .text                               ;Main code
         powwork:
             imul rax, rdx
             loop powwork
-        PUSH rax
+        PUSH rdx
         PUSH rbx
 
 
