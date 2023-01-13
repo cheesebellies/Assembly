@@ -92,7 +92,7 @@ section .text                               ;Main code
         mov rax, rdx
         mov rcx, r8
         powwork:
-            mul rax, rdx
+            imul rax, rdx
             loop powwork
         PUSH rax
         PUSH rbx
