@@ -43,7 +43,7 @@ section .text                               ;Main code
         POP r9
         pnumwork:                           ;Looping function, to prevent POP rbx from looping
             POP rax                         ;Get integer from the stack
-            xor rdx, rdx                    ;Clear rdx
+            mov rdx, 0                      ;Clear rdx
             mov r10, 10
             div r9                          ;Divide rax by r8, remainder goes into rdx, quotient into rax
             add rdx, 48                     ;Add 48 to remainder so the number will function with 
@@ -57,7 +57,7 @@ section .text                               ;Main code
             POP rax                         ;Retrieve saved quotient
             mov r8, rax                     ;Save rax to r8
             PUSH r8                         ;Save r8 on stack
-            xor rdx, rdx
+            mov rdx, 0
             mov rax, r9
             div r10
             mov r9, rax
@@ -76,7 +76,7 @@ section .text                               ;Main code
         mov r9, 0
         mov r10, 0
         cdigitswork:
-            xor rdx, rdx
+            mov rdx, 0
             div r8
             inc r9
             cmp rax, r10
@@ -102,7 +102,7 @@ section .text                               ;Main code
 
 
     factors:
-        POP r12                              ;Save return adress in r12
+        POP r12                             ;Save return adress in r12
         mov eax, 1                          ;System write 
         mov edi, 1                          ;Stdout
         mov rsi, factor_start_message_1     ;Message to be sent
