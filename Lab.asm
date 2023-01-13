@@ -34,11 +34,18 @@ section .text                               ;Main code
 
     pnum:                                   ;Integer printing function. POP rdx as number to print
         POP rbx                             ;Save return adress in rbx
+        call cdigits
+        POP r8
+        mov r9, 10
+        PUSH r9
+        PUSH r8
+        call pow
+        POP r9
         pnumwork:                           ;Looping function, to prevent POP rbx from looping
             POP rax                         ;Get integer from the stack
-            mov r8, 10                      ;save 10 to r8 for use in division
             xor rdx, rdx                    ;Clear rdx
-            div r8                          ;Divide rdx by r8, remainder goes into rdx, quotient into rax
+            mov r10, 10
+            div r9                          ;Divide rax by r8, remainder goes into rdx, quotient into rax
             add rdx, 48                     ;Add 48 to remainder so the number will function with 
             PUSH rax                        ;Save rax to the stack so it isn't overwritten by printing function
             mov [temp_var], rdx             ;Save remainder of division to variable, for printing
@@ -50,6 +57,13 @@ section .text                               ;Main code
             POP rax                         ;Retrieve saved quotient
             mov r8, rax                     ;Save rax to r8
             PUSH r8                         ;Save r8 on stack
+            xor rdx, rdx
+            mov rax, r9
+            div r10
+            mov r9, rax
+            POP rax
+            mov r8, rax
+            PUSH r8
             cmp rax, 0                      ;Compare rax with zero
             jnz pnumwork                    ;Repeat at pnumwork if rax isn't zero
         PUSH rbx                            ;Save return adress to stack
@@ -70,6 +84,19 @@ section .text                               ;Main code
         PUSH r9
         PUSH rbx
         ret
+
+    pow:
+        POP rbx
+        POP r8d
+        POP r9d
+        mov rcx, r8d
+        powwork:
+            mul r9d, r9d
+            loop powwork
+        PUSH r9d
+        PUSH rbx
+
+
 
 
     factors:
