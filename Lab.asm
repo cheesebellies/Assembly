@@ -22,11 +22,11 @@ global _start                               ;Linker instructions
 
 section .data                               ;Data for use in program
 
-temp_var: times 64 db 0                    ;Save number printing variable with a buffer
+temp_var: times 256 db 0                    ;Save number printing variable with a buffer
 temp_var_len: equ $-temp_var               ;Save the length of temp_var
 factor_start_message_1: db 0x0A, 'The factors of '
 factor_start_length_1: equ $-factor_start_message_1
-factor_start_message_2: db ' are', 0x3A, ' '
+factor_start_message_2: db ' are', 0x3A, ' ', 0x0A
 factor_start_length_2: equ $-factor_start_message_2
 
 section .text                               ;Main code
@@ -62,6 +62,7 @@ section .text                               ;Main code
         mov rsi, factor_start_message_1     ;Message to be sent
         mov edx, factor_start_length_1      ;Message length
         syscall                             ;Print message
+        POP r9                              ;Save return adress in r9
         POP r12                             ;Save number in r12
         PUSH r12
         POP r9                              ;Save return adress in r9
