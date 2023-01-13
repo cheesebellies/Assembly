@@ -35,7 +35,7 @@ section .text                               ;Main code
     pnum:                                   ;Integer printing function. POP rdx as number to print
         POP rbx                             ;Save return adress in rbx
         pnumwork:                           ;Looping function, to prevent POP rbx from looping
-            POP rdx                         ;Get integer from the stack
+            POP rax                         ;Get integer from the stack
             mov r8, 10                      ;save 10 to r8 for use in division
             xor rdx, rdx                    ;Clear rdx
             div r8                          ;Divide rdx by r8, remainder goes into rdx, quotient into rax
@@ -55,6 +55,22 @@ section .text                               ;Main code
         PUSH rbx                            ;Save return adress to stack
         ret                                 ;Return to call location
 
+    cdigits:
+        POP rbx
+        POP rax
+        mov r8, 10
+        mov r9, 0
+        mov r10, 0
+        cdigitswork:
+            xor rdx, rdx
+            div r8
+            inc r9
+            cmp rax, r10
+            jnz cdigitswork
+        PUSH r9
+        PUSH rbx
+        ret
+
 
     factors:
         POP r9                              ;Save return adress in r9
@@ -63,8 +79,8 @@ section .text                               ;Main code
         mov rsi, factor_start_message_1     ;Message to be sent
         mov edx, factor_start_length_1      ;Message length
         syscall                             ;Print message
-        mov rax, 12345
-        PUSH rax
+        mov r13, 12345
+        PUSH r13
         call pnum                           ;Print number in r12
         mov    eax, 1                       
         mov    edi, 1                       
