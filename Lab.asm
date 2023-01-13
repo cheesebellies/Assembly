@@ -22,8 +22,12 @@ global _start                               ;Linker instructions
 
 section .data                               ;Data for use in program
 
-pnum_tnum: times 64 db 0                    ;Save number printing variable with a buffer
-pnum_tnum_len: equ $-pnum_tnum              ;Save the length of pnum_tnum
+temp_var: times 64 db 0                    ;Save number printing variable with a buffer
+temp_var_len: equ $-pnum_tnum              ;Save the length of pnum_tnum
+factor_start_message_1: db 0x0A, 'The factors of '
+factor_start_length_1: equ $-factor_start_message_1
+factor_start_message_2: db 0x0A, ' are', 0x3A, ' '
+factor_start_length_2: equ $-factor_start_message_2
 
 section .text                               ;Main code
 
@@ -37,11 +41,11 @@ section .text                               ;Main code
             div r8                          ;Divide rdx by r8, remainder goes into rdx, quotient into rax
             add rdx, 48                     ;Add 48 to remainder so the number will function with 
             PUSH rax                        ;Save rax to the stack so it isn't overwritten by printing function
-            mov [pnum_tnum], rdx            ;Save remainder of division to variable, for printing
-            mov rax, 1                      ;System write code
-            mov rdi, 1                      ;Stdout code
-            mov rsi, pnum_tnum              ;Message to be sent, in this case, rdx
-            mov rdx, pnum_tnum_len          ;Message length
+            mov [temp_var], rdx             ;Save remainder of division to variable, for printing
+            mov rax, 1                      ;System write 
+            mov rdi, 1                      ;Stdout 
+            mov rsi, temp_var               ;Message to be sent, in this case, rdx
+            mov rdx, temp_var_len           ;Message length
             syscall                         ;Print message
             POP rax                         ;Retrieve saved quotient
             mov r8, rax                     ;Save rax to r8
@@ -52,9 +56,30 @@ section .text                               ;Main code
         ret                                 ;Return to call location
 
 
+    factors:
+        POP rbx                             ;Save return adress in rbx
+        POP r8                              ;Save number in r8
+        mov eax, 1                          ;System write 
+        mov edi, 1                          ;Stdout
+        mov rsi, factor_start_message_1     ;Message to be sent
+        mov edx, factor_start_length_1      ;Message length
+        syscall                             ;Print message
+        mov [temp_var], r8                  ;Save number to be factored in temporary variable, to print.
+        mov eax, 1                       
+        mov edi, 1                       
+        mov rsi, temp_var                   ;Temporary variable with r8
+        mov edx, temp_var_len               ;Variable length
+        syscall                             ;Print message
+        mov    eax, 1                       
+        mov    edi, 1                       
+        mov    rsi, factor_start_message_2    
+        mov    edx, factor_start_length_2     
+        syscall                             ;Print message
+
+
     _start:                                 ;Linker instruction, code starts execution here
 
-
+        
 
 ;********************************************************
 ;                       System exit
