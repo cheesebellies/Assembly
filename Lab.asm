@@ -96,6 +96,7 @@ section .text                               ;Main code
             loop powwork
         PUSH rdx
         PUSH rbx
+        ret
 
 
 
