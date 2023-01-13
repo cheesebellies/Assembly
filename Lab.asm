@@ -63,7 +63,7 @@ section .text                               ;Main code
         mov rsi, factor_start_message_1     ;Message to be sent
         mov edx, factor_start_length_1      ;Message length
         syscall                             ;Print message
-        mov rax, 29
+        mov rax, 12345
         PUSH rax
         call pnum                           ;Print number in r12
         mov    eax, 1                       
