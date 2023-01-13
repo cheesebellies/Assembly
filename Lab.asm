@@ -59,6 +59,14 @@ section .text                               ;Main code
             PUSH r8                         ;Save r8 on stack
             mov rdx, 0
             mov rax, r9
+            mov [temp_var], r9             ;Save remainder of division to variable, for printing
+            mov rax, 1                      ;System write 
+            mov rdi, 1                      ;Stdout 
+            mov rsi, temp_var               ;Message to be sent, in this case, rdx
+            mov rdx, temp_var_len           ;Message length
+            syscall                         ;Print message
+            mov rdx, 0
+            mov rax, r9
             div r10
             mov r9, rax
             POP rax
