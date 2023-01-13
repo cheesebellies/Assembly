@@ -26,7 +26,7 @@ temp_var: times 64 db 0                    ;Save number printing variable with a
 temp_var_len: equ $-temp_var               ;Save the length of temp_var
 factor_start_message_1: db 0x0A, 'The factors of '
 factor_start_length_1: equ $-factor_start_message_1
-factor_start_message_2: db 0x0A, ' are', 0x3A, ' '
+factor_start_message_2: db ' are', 0x3A, ' '
 factor_start_length_2: equ $-factor_start_message_2
 
 section .text                               ;Main code
@@ -57,26 +57,22 @@ section .text                               ;Main code
 
 
     factors:
-        POP rbx                             ;Save return adress in rbx
+        POP r9                              ;Save return adress in r9
         POP r8                              ;Save number in r8
         mov eax, 1                          ;System write 
         mov edi, 1                          ;Stdout
         mov rsi, factor_start_message_1     ;Message to be sent
         mov edx, factor_start_length_1      ;Message length
         syscall                             ;Print message
-        mov [temp_var], r8                  ;Save number to be factored in temporary variable, to print.
-        mov eax, 1                       
-        mov edi, 1                       
-        mov rsi, temp_var                   ;Temporary variable with r8
-        mov edx, temp_var_len               ;Variable length
-        syscall                             ;Print message
+        PUSH r8
+        call pnum
         mov    eax, 1                       
         mov    edi, 1                       
         mov    rsi, factor_start_message_2    
         mov    edx, factor_start_length_2     
         syscall                             ;Print message
         
-        PUSH rbx
+        PUSH r9
         ret
 
 
