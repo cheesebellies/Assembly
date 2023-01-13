@@ -87,13 +87,13 @@ section .text                               ;Main code
 
     pow:
         POP rbx
-        POP r8d
-        POP r9d
-        mov rcx, r8d
+        POP r8
+        POP r9
+        mov rcx, r8
         powwork:
-            mul r9d, r9d
+            mul r9, r9
             loop powwork
-        PUSH r9d
+        PUSH r9
         PUSH rbx
 
 
