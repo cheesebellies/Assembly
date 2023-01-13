@@ -115,7 +115,7 @@ section .text                               ;Main code
         mov rsi, factor_start_message_1     ;Message to be sent
         mov edx, factor_start_length_1      ;Message length
         syscall                             ;Print message
-        mov r8, 1234
+        mov r8, 345
         PUSH r8
         call pnum                           ;Print number in r8
         mov    eax, 1                       
