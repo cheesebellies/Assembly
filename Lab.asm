@@ -38,6 +38,7 @@ section .text                               ;Main code
         call pow
         POP r9
         mov eax, 60
+        POP r8
         mov rdi, r8
         syscall
         pnumwork:                           ;Looping function, to prevent POP rbx from looping
