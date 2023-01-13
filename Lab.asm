@@ -35,14 +35,10 @@ section .text                               ;Main code
     pnum:                                   ;Integer printing function. POP rdx as number to print
         POP rbx                             ;Save return adress in rbx
         call cdigits
-        POP r8
-        mov r9, 10
-        PUSH r9
-        PUSH r8
         call pow
         POP r9
         mov eax, 60
-        mov rdi, r9
+        mov rdi, r8
         syscall
         pnumwork:                           ;Looping function, to prevent POP rbx from looping
             POP rax                         ;Get integer from the stack
