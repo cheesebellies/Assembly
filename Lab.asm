@@ -75,11 +75,16 @@ section .text                               ;Main code
         mov    rsi, factor_start_message_2    
         mov    edx, factor_start_length_2     
         syscall                             ;Print message
+        
+        PUSH rbx
+        ret
 
 
     _start:                                 ;Linker instruction, code starts execution here
+        mov rax, 90
+        PUSH rax
+        call factors
 
-        
 
 ;********************************************************
 ;                       System exit
