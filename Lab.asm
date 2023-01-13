@@ -59,14 +59,6 @@ section .text                               ;Main code
             PUSH r8                         ;Save r8 on stack
             mov rdx, 0
             mov rax, r9
-            mov [temp_var], r9             ;Save remainder of division to variable, for printing
-            mov rax, 1                      ;System write 
-            mov rdi, 1                      ;Stdout 
-            mov rsi, temp_var               ;Message to be sent, in this case, rdx
-            mov rdx, temp_var_len           ;Message length
-            syscall                         ;Print message
-            mov rdx, 0
-            mov rax, r9
             div r10
             mov r9, rax
             POP rax
@@ -115,7 +107,7 @@ section .text                               ;Main code
         mov rsi, factor_start_message_1     ;Message to be sent
         mov edx, factor_start_length_1      ;Message length
         syscall                             ;Print message
-        mov r8, 345
+        mov r8, 234
         PUSH r8
         call pnum                           ;Print number in r8
         mov    eax, 1                       
@@ -129,8 +121,9 @@ section .text                               ;Main code
 
 
     _start:                                 ;Linker instruction, code starts execution here
-        mov rax, 50
+        mov rax, 1234
         PUSH rax
+        call pnum
         call factors
 
 
