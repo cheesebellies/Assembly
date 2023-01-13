@@ -108,7 +108,7 @@ section .text                               ;Main code
         mov rsi, factor_start_message_1     ;Message to be sent
         mov edx, factor_start_length_1      ;Message length
         syscall                             ;Print message
-        mov r13, 12345
+        mov r13, 234
         PUSH r13
         call pnum                           ;Print number in r12
         mov    eax, 1                       
