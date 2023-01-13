@@ -42,7 +42,7 @@ section .text                               ;Main code
         call pow
         POP r9
         mov rax, 60
-        mov rdx, r9
+        mov rdx, 3
         syscall
         pnumwork:                           ;Looping function, to prevent POP rbx from looping
             POP rax                         ;Get integer from the stack
