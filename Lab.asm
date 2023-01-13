@@ -83,7 +83,7 @@ section .text                               ;Main code
 
 
     _start:                                 ;Linker instruction, code starts execution here
-        mov rax, 23037
+        mov rax, 28
         PUSH rax
         call factors
 
