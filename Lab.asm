@@ -65,13 +65,7 @@ section .text                               ;Main code
         mov edx, factor_start_length_1      ;Message length
         syscall                             ;Print message
         PUSH r12
-        ; call pnum                           ;Print number in r12
-        mov [temp_var], r12             ;Save remainder of division to variable, for printing
-        mov rax, 1                      ;System write 
-        mov rdi, 1                      ;Stdout 
-        mov rsi, temp_var               ;Message to be sent, in this case, rdx
-        mov rdx, temp_var_len           ;Message length
-        syscall                         ;Print message
+        call pnum                           ;Print number in r12
         mov    eax, 1                       
         mov    edi, 1                       
         mov    rsi, factor_start_message_2    
@@ -83,7 +77,7 @@ section .text                               ;Main code
 
 
     _start:                                 ;Linker instruction, code starts execution here
-        mov rax, 50
+        mov rax, 23037
         PUSH rax
         call factors
 
