@@ -58,13 +58,11 @@ section .text                               ;Main code
 
     factors:
         POP r9                              ;Save return adress in r9
-        POP r12                             ;Save number in r12
         mov eax, 1                          ;System write 
         mov edi, 1                          ;Stdout
         mov rsi, factor_start_message_1     ;Message to be sent
         mov edx, factor_start_length_1      ;Message length
         syscall                             ;Print message
-        PUSH r12
         call pnum                           ;Print number in r12
         mov    eax, 1                       
         mov    edi, 1                       
