@@ -57,17 +57,21 @@ section .text                               ;Main code
 
 
     factors:
+        POP r9                              ;Save return adress in r9
+        POP r12                             ;Save number in r12
         mov eax, 1                          ;System write 
         mov edi, 1                          ;Stdout
         mov rsi, factor_start_message_1     ;Message to be sent
         mov edx, factor_start_length_1      ;Message length
         syscall                             ;Print message
-        POP r9                              ;Save return adress in r9
-        POP r12                             ;Save number in r12
         PUSH r12
-        POP r9                              ;Save return adress in r9
-        POP r12                             ;Save number in r12
-        call pnum
+        ; call pnum                           ;Print number in r12
+        mov [temp_var], r9             ;Save remainder of division to variable, for printing
+        mov rax, 1                      ;System write 
+        mov rdi, 1                      ;Stdout 
+        mov rsi, temp_var               ;Message to be sent, in this case, rdx
+        mov rdx, temp_var_len           ;Message length
+        syscall                         ;Print message
         mov    eax, 1                       
         mov    edi, 1                       
         mov    rsi, factor_start_message_2    
