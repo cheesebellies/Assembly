@@ -124,7 +124,7 @@ section .text                               ;Main code
 
 
     _start:                                 ;Linker instruction, code starts execution here
-        mov rax, 1234
+        mov rax, 123
         PUSH rax
         call pnum
         call factors
