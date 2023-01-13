@@ -41,7 +41,6 @@ section .text                               ;Main code
         PUSH r8
         call pow
         POP r9
-        add r9, 48
         mov [temp_var], r9             ;Save remainder of division to variable, for printing
         mov rax, 1                      ;System write 
         mov rdi, 1                      ;Stdout 
