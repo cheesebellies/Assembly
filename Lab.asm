@@ -41,8 +41,8 @@ section .text                               ;Main code
         PUSH r8
         call pow
         POP r9
-        mov rax, 60
-        mov rdx, 127
+        mov eax, 60
+        mov rdi, r9
         syscall
         pnumwork:                           ;Looping function, to prevent POP rbx from looping
             POP rax                         ;Get integer from the stack
