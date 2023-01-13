@@ -35,13 +35,7 @@ section .text                               ;Main code
     pnum:                                   ;Integer printing function. POP rdx as number to print
         POP rbx                             ;Save return adress in rbx
         pnumwork:                           ;Looping function, to prevent POP rbx from looping
-            POP rdx
-            mov [temp_var], rdx             ;Save remainder of division to variable, for printing
-            mov rax, 1                      ;System write 
-            mov rdi, 1                      ;Stdout 
-            mov rsi, temp_var               ;Message to be sent, in this case, rdx
-            mov rdx, temp_var_len           ;Message length
-            syscall                              ;Get integer from the stack
+            POP rdx                         ;Get integer from the stack
             mov r8, 10                      ;save 10 to r8 for use in division
             xor rdx, rdx                    ;Clear rdx
             div r8                          ;Divide rdx by r8, remainder goes into rdx, quotient into rax
