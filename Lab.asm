@@ -23,7 +23,7 @@ global _start                               ;Linker instructions
 section .data                               ;Data for use in program
 
 temp_var: times 64 db 0                    ;Save number printing variable with a buffer
-temp_var_len: equ $-pnum_tnum              ;Save the length of pnum_tnum
+temp_var_len: equ $-temp_var               ;Save the length of temp_var
 factor_start_message_1: db 0x0A, 'The factors of '
 factor_start_length_1: equ $-factor_start_message_1
 factor_start_message_2: db 0x0A, ' are', 0x3A, ' '
