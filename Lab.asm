@@ -66,7 +66,7 @@ section .text                               ;Main code
         syscall                             ;Print message
         PUSH r12
         ; call pnum                           ;Print number in r12
-        mov [temp_var], r9             ;Save remainder of division to variable, for printing
+        mov [temp_var], r12             ;Save remainder of division to variable, for printing
         mov rax, 1                      ;System write 
         mov rdi, 1                      ;Stdout 
         mov rsi, temp_var               ;Message to be sent, in this case, rdx
