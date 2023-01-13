@@ -102,15 +102,14 @@ section .text                               ;Main code
 
 
     factors:
-        POP r12                             ;Save return adress in r12
         mov eax, 1                          ;System write 
         mov edi, 1                          ;Stdout
         mov rsi, factor_start_message_1     ;Message to be sent
         mov edx, factor_start_length_1      ;Message length
         syscall                             ;Print message
-        mov r13, 234
-        PUSH r13
-        call pnum                           ;Print number in r12
+        mov r8, 234
+        PUSH r8
+        call pnum                           ;Print number in r8
         mov    eax, 1                       
         mov    edi, 1                       
         mov    rsi, factor_start_message_2    
