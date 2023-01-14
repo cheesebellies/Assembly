@@ -118,10 +118,7 @@ section .text                               ;Main code
             imul r10, r11
             dec r9
             cmp r9, 0
-            jnz powwork
-            mov rax, 60
-            mov rdi, r10
-            syscall
+            jne powwork
         PUSH r8
         ret
             
