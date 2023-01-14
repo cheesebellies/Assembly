@@ -141,7 +141,6 @@ section .text                               ;Main code
             inc r9
             cmp r8, r9
             jne factorswork
-
         ret                                 ;Return to location the function was called from
 
 
