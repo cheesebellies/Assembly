@@ -112,13 +112,13 @@ section .text                               ;Main code
         POP r8  ;ret
         POP r9  ;pow
         POP r10 ;num
-        mov rax, 60
-        mov rdi, r9
-        syscall
         mov r11, r10
         mov rcx, r9
         powwork:
             imul r10, r11
+            mov rax, 60
+            mov rdi, r10
+            syscall
             dec r9
             jnz powwork
         PUSH r8
