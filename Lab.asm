@@ -80,11 +80,16 @@ section .text                               ;Main code
         POP r9                              ;Save exponent to r9
         POP r10                             ;Save base to r10
         mov r11, r10                        ;Make r11 equal to r10
+        mov rax, r9                         ;Make rax equal r9 for comparison below
+        dec r9
+        jnz powwork                         ;If number isn't zero, go to recursive function
+        jmp fi                              ;Jump to exit of function if number is zero
         powwork:                            ;Recursive function
             imul r10, r11                   ;Multiply base by copy of itself
             dec r9                          ;Decrement loop counter
             mov rax, r9                     ;Make rax equal r9 for comparison below
             jnz powwork                     ;If negative, exit recursive function, else, recurse
+        fi:
         xor rdx, rdx                        ;Make rdx zero
         mov rax, r10                        ;Make rax equal to result
         div r11                             ;Divide by base
@@ -116,7 +121,7 @@ section .text                               ;Main code
 
 
     _start:                                 ;Linker instruction, code starts execution here
-        mov rax, 123                          ;Save 50 to rax
+        mov rax, 5                          ;Save 50 to rax
         PUSH rax                            ;Push rax onto stack, for factoring
         call factors                        ;Factor number
 
