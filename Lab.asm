@@ -34,11 +34,11 @@ section .text                               ;Main code
 
     pnum2:
         POP rax
-        POP r8
-        mov r9, 10
-        PUSH rax
+        call cdigits
+        POP rbx
+        mov r8, 10
         PUSH r8
-        PUSH r9
+        PUSH rbx
         call pow
         POP r8
         mov rax, 60
