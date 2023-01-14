@@ -42,7 +42,7 @@ section .text                               ;Main code
         call pow
         POP r8
         mov rax, 60
-        mov rdi, r8
+        mov rdi, rbx
         syscall
 
 
