@@ -116,7 +116,8 @@ section .text                               ;Main code
         mov rcx, r9
         powwork:
             imul r10, r11
-            loop powwork
+            dec r9
+            jnz powwork
         PUSH r8
         ret
             
