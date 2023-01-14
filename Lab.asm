@@ -79,9 +79,6 @@ section .text                               ;Main code
     pow:                                    ;Function to get a number to the power of another
         POP r8                              ;Save return adress to r8
         POP r9                              ;Save exponent to r9
-        mov eax, 60
-        mov rdi, r9
-        syscall
         dec r9                              ;Decrement exponent, for compatibility with recursive function
         POP r10                             ;Save base to r10
         mov r11, r10                        ;Make r11 equal to r10
@@ -89,8 +86,8 @@ section .text                               ;Main code
         powwork:                            ;Recursive function
             imul r10, r11                   ;Multiply base by copy of itself
             dec r9                          ;Decrement loop counter
-            cmp r9, 0                       ;Compare loop counter with zero
-            jne powwork                     ;If so, exit recursive function, else, recurse
+            mov r9, rax
+            jns powwork                     ;If so, exit recursive function, else, recurse
         PUSH r10                            ;Push result to stack
         PUSH r8                             ;Push return adress to stack
         ret                                 ;Return to location the function was called from
