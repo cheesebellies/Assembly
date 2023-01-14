@@ -42,6 +42,10 @@ section .text                               ;Main code
     pnum:                                   ;Integer printing function. POP rdx as number to print
         POP rbx                             ;Save return adress in rbx
         call cdigits
+        POP rax
+        mov rbx, 10
+        PUSH rax
+        PUSH rbx
         call pow
         mov rax, 60
         POP rdi
@@ -99,7 +103,7 @@ section .text                               ;Main code
         POP rbx
         POP r8
         POP rax
-        mov rax, rdx
+        mov rdx, rax
         mov rcx, r8
         powwork:
             imul rax, rdx
