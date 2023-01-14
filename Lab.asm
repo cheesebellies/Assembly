@@ -107,21 +107,7 @@ section .text                               ;Main code
 
 
     factors:
-        mov eax, 1                          ;System write 
-        mov edi, 1                          ;Stdout
-        mov rsi, factor_start_message_1     ;Message to be sent
-        mov edx, factor_start_length_1      ;Message length
-        syscall                             ;Print message
-        mov r8, 50
-        PUSH r8
-        call pnum                           ;Print number in r8
-        mov    eax, 1                       
-        mov    edi, 1                       
-        mov    rsi, factor_start_message_2    
-        mov    edx, factor_start_length_2     
-        syscall                             ;Print message
-        
-        PUSH r12
+        ;wip
         ret
 
 
