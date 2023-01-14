@@ -88,6 +88,7 @@ section .text                               ;Main code
             dec r9                          ;Decrement loop counter
             mov rax, r9
             jnz powwork
+            mov rax, r9
             jns powwork                     ;If so, exit recursive function, else, recurse
         PUSH r10                            ;Push result to stack
         PUSH r8                             ;Push return adress to stack
