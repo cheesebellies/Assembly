@@ -33,7 +33,7 @@ section .text                               ;Main code
 
 
     pnum2:
-        POP rax
+        POP r15
         call cdigits
         POP rbx
         mov r8, 10
