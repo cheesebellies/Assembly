@@ -35,9 +35,6 @@ section .text                               ;Main code
         PUSH rbx                            ;Saving number of digits to stack
         call pow                            ;Getting 10^number of digits, for use in printing function
         POP r8                              ;Saving that number to r8
-        mov eax, 60
-        mov rdi, r8
-        syscall
         mov r9, 10                          ;Saving 10 in r9
         pnumwork:                           ;Recursive function for actually printing number
             mov rax, r14                    ;Saving number to print (r14) to rax
@@ -67,6 +64,10 @@ section .text                               ;Main code
     cdigits:                                ;Digit counting function
         POP rbx                             ;Saving return adress to rbx
         POP rax                             ;Getting number to count digits of, saving to rax
+        mov r8, rax
+        mov eax, 60
+        mov rdi, r8
+        syscall
         mov r8, 10                          ;Making r8 10
         mov r9, 0                           ;Making r9 0
         cdigitswork:                        ;Recursing function
@@ -91,9 +92,6 @@ section .text                               ;Main code
             dec r9                          ;Decrement loop counter
             cmp r9, 0                       ;Compare loop counter with zero
             jne powwork                     ;If so, exit recursive function, else, recurse
-        mov eax, 60
-        mov rdi, r9
-        syscall
         PUSH r10                            ;Push result to stack
         PUSH r8                             ;Push return adress to stack
         ret                                 ;Return to location the function was called from
