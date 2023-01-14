@@ -86,9 +86,8 @@ section .text                               ;Main code
         powwork:                            ;Recursive function
             imul r10, r11                   ;Multiply base by copy of itself
             dec r9                          ;Decrement loop counter
-            mov r9, rax
+            mov rax, r9
             jns powwork                     ;If so, exit recursive function, else, recurse
-            jnz powwork
         PUSH r10                            ;Push result to stack
         PUSH r8                             ;Push return adress to stack
         ret                                 ;Return to location the function was called from
