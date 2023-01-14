@@ -42,9 +42,19 @@ section .text                               ;Main code
         PUSH r8         
         PUSH rbx
         call pow
-        POP r8          ;1000 in this case
+        POP r8          ;powresult
         pnum2work:
-            
+            mov rax, r14
+            xor rdx, rdx
+            div r8
+            mov [temp_var], rdx             ;Save remainder of division to variable, for printing
+            mov rax, 1                      ;System write 
+            mov rdi, 1                      ;Stdout 
+            mov rsi, temp_var               ;Message to be sent, in this case, rdx
+            mov rdx, temp_var_len           ;Message length
+            syscall   
+        PUSH r15
+        ret
 
 
 
