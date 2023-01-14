@@ -20,11 +20,6 @@
 
 global _start                               ;Linker instructions
 
-section .data                               ;Data for use in program
-
-temp_var: times 256 db 0                    ;Save number printing variable with a buffer
-temp_var_len: equ $-temp_var                ;Save the length of temp_var
-
 section .text                               ;Main code
 
 
@@ -98,12 +93,24 @@ section .text                               ;Main code
         ret                                 ;Return to location the function was called from
             
 
-
-
-
-
     factors:
-        ;wip
+        POP r8
+        POP r9
+        PUSH r8
+        mov rax, 1
+        mov rdi, 1
+        mov rsi, factors_msg_1
+        mov rdx, factors_msg_1_len
+        syscall
+        PUSH r9
+        PUSH r9
+        call pnum
+        mov rax, 1
+        mov rdi, 1
+        mov rsi, factors_msg_2
+        mov rdx, factors_msg_2_len
+        syscall
+        POP r9
         ret
 
 
@@ -118,3 +125,17 @@ section .text                               ;Main code
     mov    eax, 60                          ;System exit code
     mov    rdi, 0                           ;Success code
     syscall                                 ;Exit program
+
+
+section .data                               ;Data for use in program
+
+temp_var: times 256 db 0                    ;Save number printing variable with a buffer
+temp_var_len: equ $-temp_var                ;Save the length of temp_var
+factors_msg_1: db 0x0A, 'The factors of '
+factors_msg_1_len: equ $-factors_msg_1
+factors_msg_2: db ' are', 0x3A, 0x0A
+factors_msg_2_len: equ $-factors_msg_2
+factors_comma: db ','
+factors_comma_len: equ $-factors_comma
+factors_period: db ','
+factors_period_len: equ $-factors_period
