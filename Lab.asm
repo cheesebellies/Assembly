@@ -138,7 +138,7 @@ section .text                               ;Main code
                 POP r9
                 POP r8
             factorsfi:
-            inc r9
+            inc r8
             cmp r8, r9
             jne factorswork
         ret                                 ;Return to location the function was called from
