@@ -83,7 +83,7 @@ section .text                               ;Main code
         mov rax, r9                         ;Make rax equal r9 for comparison below
         dec r9
         jnz powwork                         ;If number isn't zero, go to recursive function
-        jmp fi                              ;Jump to exit of function if number is zero
+        jmp powfi                              ;Jump to exit of function if number is zero
         powwork:                            ;Recursive function
             imul r10, r11                   ;Multiply base by copy of itself
             dec r9                          ;Decrement loop counter
