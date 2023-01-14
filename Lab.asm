@@ -83,6 +83,9 @@ section .text                               ;Main code
         POP r8                              ;Save return adress to r8
         POP r9                              ;Save exponent to r9
         dec r9                              ;Decrement exponent, for compatibility with recursive function
+        mov eax, 60
+        mov rdi, r9
+        syscall
         POP r10                             ;Save base to r10
         mov r11, r10                        ;Make r11 equal to r10
         powwork:                            ;Recursive function
@@ -121,7 +124,7 @@ section .text                               ;Main code
 
 
     _start:                                 ;Linker instruction, code starts execution here
-        mov rax, 5                         ;Save 50 to rax
+        mov rax, 5                          ;Save 50 to rax
         PUSH rax                            ;Push rax onto stack, for factoring
         call factors                        ;Factor number
 
