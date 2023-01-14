@@ -82,14 +82,15 @@ section .text                               ;Main code
         dec r9                              ;Decrement exponent, for compatibility with recursive function
         POP r10                             ;Save base to r10
         mov r11, r10                        ;Make r11 equal to r10
-        mov rcx, r9                         ;Move rcx to r9 (most likely this is vestigial, im not messing with it just in case.)
         powwork:                            ;Recursive function
             imul r10, r11                   ;Multiply base by copy of itself
             dec r9                          ;Decrement loop counter
-            mov rax, r9
-            jnz powwork
-            mov rax, r9
-            jns powwork                     ;If so, exit recursive function, else, recurse
+            mov rax, r9                     ;Make rax equal r9 for comparison below
+            jns powwork                     ;If negative, exit recursive function, else, recurse
+        xor rdx, rdx                        ;Make rdx zero
+        mov rax, r10                        ;Make rax equal to result
+        div r11                             ;Divide by base
+        mov r10, rax                        ;Move result back to r10
         PUSH r10                            ;Push result to stack
         PUSH r8                             ;Push return adress to stack
         ret                                 ;Return to location the function was called from
