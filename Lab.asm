@@ -120,9 +120,6 @@ section .text                               ;Main code
             dec r9
             cmp r9, 0
             jne powwork
-        mov rax, 60
-        mov rdi, r10
-        syscall
         PUSH r8
         PUSH r10
         ret
