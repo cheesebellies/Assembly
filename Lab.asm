@@ -33,16 +33,18 @@ section .text                               ;Main code
 
 
     pnum2:
-        POP r15
-        call cdigits
-        POP rbx
-        mov r8, 10
-        PUSH r8
+        POP r15         ;ret
+        POP r14
+        PUSH r14
+        call cdigits    
+        POP rbx         ;len
+        mov r8, 10      ;pownum
+        PUSH r8         
         PUSH rbx
         call pow
-        POP r8
-        mov rax, 60
-        mov rdi, rbx
+        POP r8          ;1000 in this case
+        mov rax, 60     
+        mov rdi, r14
         syscall
 
 
