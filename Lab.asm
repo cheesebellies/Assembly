@@ -152,7 +152,7 @@ section .text                               ;Main code
 
 
     _start:                                 ;Linker instruction, code starts execution here
-        mov rax, 24                         ;Save 24 to rax
+        mov rax, 50                         ;Save 24 to rax
         PUSH rax                            ;Push rax onto stack, for factoring
         call factors                        ;Factor number
 
