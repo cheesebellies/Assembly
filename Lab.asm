@@ -42,13 +42,9 @@ section .text                               ;Main code
     pnum:                                   ;Integer printing function. POP rdx as number to print
         POP rbx                             ;Save return adress in rbx
         call cdigits
-        POP rdx
-        mov [temp_var], rdx             ;Save remainder of division to variable, for printing
-        mov rax, 1                      ;System write 
-        mov rdi, 1                      ;Stdout 
-        mov rsi, temp_var               ;Message to be sent, in this case, rdx
-        mov rdx, temp_var_len           ;Message length
-        syscall                         ;Print message
+        mov rax, 60
+        POP rdi
+        syscall
         call pow
         POP r9
         mov eax, 60
