@@ -83,9 +83,8 @@ section .text                               ;Main code
         POP r8                              ;Save return adress to r8
         POP r9                              ;Save exponent to r9
         dec r9                              ;Decrement exponent, for compatibility with recursive function
-        mov eax, 60
-        mov rdi, r9
-        syscall
+        PUSH r9
+        call pnum
         POP r10                             ;Save base to r10
         mov r11, r10                        ;Make r11 equal to r10
         powwork:                            ;Recursive function
