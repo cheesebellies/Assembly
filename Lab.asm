@@ -49,7 +49,7 @@ section .text                               ;Main code
             mov rax, r14
             xor rdx, rdx
             div r8
-            mov rax, r10
+            mov r10, rax
             imul rax, r8
             sub r14, rax
             mov rax, r10
