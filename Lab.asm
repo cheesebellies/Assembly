@@ -32,11 +32,29 @@ factor_start_length_2: equ $-factor_start_message_2
 section .text                               ;Main code
 
 
+    pnum2:
+        POP rax
+        POP r8
+        PUSH rax
+
+
+
     pnum:                                   ;Integer printing function. POP rdx as number to print
         POP rbx                             ;Save return adress in rbx
         call cdigits
+        POP rdx
+        mov [temp_var], rdx             ;Save remainder of division to variable, for printing
+        mov rax, 1                      ;System write 
+        mov rdi, 1                      ;Stdout 
+        mov rsi, temp_var               ;Message to be sent, in this case, rdx
+        mov rdx, temp_var_len           ;Message length
+        syscall                         ;Print message
         call pow
         POP r9
+        mov eax, 60
+        POP r8
+        mov rdi, r8
+        syscall
         pnumwork:                           ;Looping function, to prevent POP rbx from looping
             POP rax                         ;Get integer from the stack
             mov rdx, 0                      ;Clear rdx
@@ -120,7 +138,7 @@ section .text                               ;Main code
         mov rax, 123
         PUSH rax
         call pnum
-        call factors
+        ; call factors
 
 
 ;********************************************************
