@@ -87,6 +87,7 @@ section .text                               ;Main code
             imul r10, r11                   ;Multiply base by copy of itself
             dec r9                          ;Decrement loop counter
             mov rax, r9
+            jnz powwork
             jns powwork                     ;If so, exit recursive function, else, recurse
         PUSH r10                            ;Push result to stack
         PUSH r8                             ;Push return adress to stack
