@@ -38,6 +38,7 @@ section .text                               ;Main code
         PUSH r14
         call cdigits    
         POP rbx         ;len
+        dec rbx
         mov r8, 10      ;pownum
         PUSH r8         
         PUSH rbx
@@ -61,46 +62,46 @@ section .text                               ;Main code
 
 
 
-    pnum:                                   ;Integer printing function. POP rdx as number to print
-        POP rbx                             ;Save return adress in rbx
-        call cdigits
-        POP rax
-        mov rbx, 10
-        PUSH rax
-        PUSH rbx
-        call pow
-        POP r9
-        mov eax, 60
-        POP r8
-        mov rdi, r8
-        syscall
-        pnumwork:                           ;Looping function, to prevent POP rbx from looping
-            POP rax                         ;Get integer from the stack
-            mov rdx, 0                      ;Clear rdx
-            mov r10, 10
-            div r9                          ;Divide rax by r8, remainder goes into rdx, quotient into rax
-            add rdx, 48                     ;Add 48 to remainder so the number will function with 
-            PUSH rax                        ;Save rax to the stack so it isn't overwritten by printing function
-            mov [temp_var], rdx             ;Save remainder of division to variable, for printing
-            mov rax, 1                      ;System write 
-            mov rdi, 1                      ;Stdout 
-            mov rsi, temp_var               ;Message to be sent, in this case, rdx
-            mov rdx, temp_var_len           ;Message length
-            syscall                         ;Print message
-            POP rax                         ;Retrieve saved quotient
-            mov r8, rax                     ;Save rax to r8
-            PUSH r8                         ;Save r8 on stack
-            mov rdx, 0
-            mov rax, r9
-            div r10
-            mov r9, rax
-            POP rax
-            mov r8, rax
-            PUSH r8
-            cmp rax, 0                      ;Compare rax with zero
-            jnz pnumwork                    ;Repeat at pnumwork if rax isn't zero
-        PUSH rbx                            ;Save return adress to stack
-        ret                                 ;Return to call location
+    ; pnum:                                   ;Integer printing function. POP rdx as number to print
+    ;     POP rbx                             ;Save return adress in rbx
+    ;     call cdigits
+    ;     POP rax
+    ;     mov rbx, 10
+    ;     PUSH rax
+    ;     PUSH rbx
+    ;     call pow
+    ;     POP r9
+    ;     mov eax, 60
+    ;     POP r8
+    ;     mov rdi, r8
+    ;     syscall
+    ;     pnumwork:                           ;Looping function, to prevent POP rbx from looping
+    ;         POP rax                         ;Get integer from the stack
+    ;         mov rdx, 0                      ;Clear rdx
+    ;         mov r10, 10
+    ;         div r9                          ;Divide rax by r8, remainder goes into rdx, quotient into rax
+    ;         add rdx, 48                     ;Add 48 to remainder so the number will function with 
+    ;         PUSH rax                        ;Save rax to the stack so it isn't overwritten by printing function
+    ;         mov [temp_var], rdx             ;Save remainder of division to variable, for printing
+    ;         mov rax, 1                      ;System write 
+    ;         mov rdi, 1                      ;Stdout 
+    ;         mov rsi, temp_var               ;Message to be sent, in this case, rdx
+    ;         mov rdx, temp_var_len           ;Message length
+    ;         syscall                         ;Print message
+    ;         POP rax                         ;Retrieve saved quotient
+    ;         mov r8, rax                     ;Save rax to r8
+    ;         PUSH r8                         ;Save r8 on stack
+    ;         mov rdx, 0
+    ;         mov rax, r9
+    ;         div r10
+    ;         mov r9, rax
+    ;         POP rax
+    ;         mov r8, rax
+    ;         PUSH r8
+    ;         cmp rax, 0                      ;Compare rax with zero
+    ;         jnz pnumwork                    ;Repeat at pnumwork if rax isn't zero
+    ;     PUSH rbx                            ;Save return adress to stack
+    ;     ret                                 ;Return to call location
 
     cdigits:
         POP rbx
