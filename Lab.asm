@@ -55,7 +55,13 @@ section .text                               ;Main code
             mov rdi, 1                      ;Stdout 
             mov rsi, temp_var               ;Message to be sent, in this case, rdx
             mov rdx, temp_var_len           ;Message length
-            syscall   
+            syscall
+            xor rdx, rdx
+            mov rax, r8
+            div r9
+            mov r8, rax
+            cmp r8, 0
+            jne pnum2work
         PUSH r15
         ret
 
