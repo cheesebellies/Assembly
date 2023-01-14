@@ -35,7 +35,16 @@ section .text                               ;Main code
     pnum2:
         POP rax
         POP r8
+        mov r9, 10
         PUSH rax
+        PUSH r8
+        PUSH r9
+        call pow
+        POP r8
+        mov rax, 60
+        mov rdi, r8
+        syscall
+
 
 
 
@@ -137,7 +146,7 @@ section .text                               ;Main code
     _start:                                 ;Linker instruction, code starts execution here
         mov rax, 123
         PUSH rax
-        call pnum
+        call pnum2
         ; call factors
 
 
