@@ -120,8 +120,8 @@ section .text                               ;Main code
             dec r9
             cmp r9, 0
             jne powwork
-        PUSH r8
         PUSH r10
+        PUSH r8
         ret
             
 
