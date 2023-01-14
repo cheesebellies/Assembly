@@ -110,7 +110,7 @@ section .text                               ;Main code
 
     pow:
             mov rax, 60
-            mov rdi, 1000
+            mov rdi, 10000
             syscall
         POP r8  ;ret
         POP r9  ;pow
