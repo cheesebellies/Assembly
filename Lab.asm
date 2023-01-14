@@ -109,17 +109,18 @@ section .text                               ;Main code
         ret
 
     pow:
-        POP rbx
-        POP r8
-        POP rax
-        mov rdx, rax
-        mov rcx, r8
+        POP r8  ;ret
+        POP r9  ;pow
+        POP r10 ;num
+        mov r11, r10
+        mov rcx, r9
         powwork:
-            imul rax, rdx
+            imul r10, r11
             loop powwork
-        PUSH rdx
-        PUSH rbx
+        PUSH r8
         ret
+            
+
 
 
 

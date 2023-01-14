@@ -60,8 +60,8 @@ _start:
     mov rbx, 2 ; second param
     mov rcx, 6 ; loop count
     top:
-    imul rbx, rax
-    loop top ; loop instruction
+        imul rbx, rax
+        loop top ; loop instruction
     cmp rbx, 32		;compares a with 2, does effectively a-2 
     jne .else         ;if the result would not be zero, goto .else 
         mov    eax, 1        ; sys_write
