@@ -89,7 +89,7 @@ section .text                               ;Main code
             dec r9                          ;Decrement loop counter
             mov rax, r9                     ;Make rax equal r9 for comparison below
             jnz powwork                     ;If negative, exit recursive function, else, recurse
-        fi:
+        powfi:
         xor rdx, rdx                        ;Make rdx zero
         mov rax, r10                        ;Make rax equal to result
         div r11                             ;Divide by base
@@ -117,11 +117,36 @@ section .text                               ;Main code
         mov rdx, factors_msg_2_len          ;           |
         syscall                             ;End print factors message two
         POP r9                              ;Save number to r9
+        mov r8, 1
+        factorswork:
+            xor rdx, rdx
+            mov r9, rax
+            div r8
+            cmp rdx, 0
+            je factorsp
+            jmp factorsfi
+            factorsp:
+                PUSH r8
+                PUSH r9
+                PUSH r8
+                call pnum
+                mov rax, 1                  ;Print factors comma
+                mov rdi, 1                  ;           |
+                mov rsi, factors_comma      ;           |
+                mov rdx, factors_comma_len  ;           |
+                syscall                     ;End print factors comma
+                POP r9
+                POP r8
+            factorsfi:
+            inc r9
+            cmp r8, r9
+            jne factorswork
+
         ret                                 ;Return to location the function was called from
 
 
     _start:                                 ;Linker instruction, code starts execution here
-        mov rax, 5                          ;Save 50 to rax
+        mov rax, 24                         ;Save 24 to rax
         PUSH rax                            ;Push rax onto stack, for factoring
         call factors                        ;Factor number
 
@@ -141,9 +166,9 @@ temp_var: times 256 db 0                    ;Save number printing variable with 
 temp_var_len: equ $-temp_var                ;Save the length of temp_var
 factors_msg_1: db 0x0A, 'The factors of '
 factors_msg_1_len: equ $-factors_msg_1
-factors_msg_2: db ' are', 0x3A, 0x0A
+factors_msg_2: db ' are', 0x3A ' '
 factors_msg_2_len: equ $-factors_msg_2
-factors_comma: db ','
+factors_comma: db ', '
 factors_comma_len: equ $-factors_comma
-factors_period: db ','
+factors_period: db '.'
 factors_period_len: equ $-factors_period
