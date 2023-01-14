@@ -111,7 +111,7 @@ section .text                               ;Main code
         mov rdx, factors_msg_2_len
         syscall
         POP r9
-        ret
+        
 
 
     _start:                                 ;Linker instruction, code starts execution here
