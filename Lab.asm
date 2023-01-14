@@ -64,10 +64,6 @@ section .text                               ;Main code
     cdigits:                                ;Digit counting function
         POP rbx                             ;Saving return adress to rbx
         POP rax                             ;Getting number to count digits of, saving to rax
-        mov r8, rax
-        mov eax, 60
-        mov rdi, r8
-        syscall
         mov r8, 10                          ;Making r8 10
         mov r9, 0                           ;Making r9 0
         cdigitswork:                        ;Recursing function
@@ -83,6 +79,9 @@ section .text                               ;Main code
     pow:                                    ;Function to get a number to the power of another
         POP r8                              ;Save return adress to r8
         POP r9                              ;Save exponent to r9
+        mov eax, 60
+        mov rdi, r9
+        syscall
         dec r9                              ;Decrement exponent, for compatibility with recursive function
         POP r10                             ;Save base to r10
         mov r11, r10                        ;Make r11 equal to r10
