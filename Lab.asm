@@ -57,9 +57,6 @@ section .text                               ;Main code
         PUSH rax
         PUSH rbx
         call pow
-        mov rax, 60
-        POP rdi
-        syscall
         POP r9
         mov eax, 60
         POP r8
@@ -152,7 +149,7 @@ section .text                               ;Main code
     _start:                                 ;Linker instruction, code starts execution here
         mov rax, 123
         PUSH rax
-        call pnum
+        call pnum2
         ; call factors
 
 
