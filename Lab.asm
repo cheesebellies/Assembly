@@ -141,6 +141,13 @@ section .text                               ;Main code
             inc r8
             cmp r8, r9
             jne factorswork
+        PUSH r9
+        call pnum
+        mov rax, 1                          ;Print factors comma
+        mov rdi, 1                          ;           |
+        mov rsi, factors_period             ;           |
+        mov rdx, factors_period_len         ;           |
+        syscall                             ;End print factors comma
         ret                                 ;Return to location the function was called from
 
 
