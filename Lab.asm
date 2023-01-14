@@ -34,9 +34,6 @@ section .text                               ;Main code
         PUSH rbx                            ;Saving number of digits to stack
         call pow                            ;Getting 10^number of digits, for use in printing function
         POP r8                              ;Saving that number to r8
-        mov eax, 60
-        mov rdi, r8
-        syscall
         mov r9, 10                          ;Saving 10 in r9
         pnumwork:                           ;Recursive function for actually printing number
             mov rax, r14                    ;Saving number to print (r14) to rax
@@ -87,7 +84,8 @@ section .text                               ;Main code
             imul r10, r11                   ;Multiply base by copy of itself
             dec r9                          ;Decrement loop counter
             mov rax, r9                     ;Make rax equal r9 for comparison below
-            jnz powwork                     ;If negative, exit recursive function, else, recurse
+            cmp rax, 1
+            jne powwork                     ;If negative, exit recursive function, else, recurse
         xor rdx, rdx                        ;Make rdx zero
         mov rax, r10                        ;Make rax equal to result
         div r11                             ;Divide by base
