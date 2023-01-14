@@ -91,6 +91,9 @@ section .text                               ;Main code
             dec r9                          ;Decrement loop counter
             cmp r9, 0                       ;Compare loop counter with zero
             jne powwork                     ;If so, exit recursive function, else, recurse
+        mov eax, 60
+        mov rdi, r9
+        syscall
         PUSH r10                            ;Push result to stack
         PUSH r8                             ;Push return adress to stack
         ret                                 ;Return to location the function was called from
