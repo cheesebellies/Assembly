@@ -109,6 +109,9 @@ section .text                               ;Main code
         ret
 
     pow:
+            mov rax, 60
+            mov rdi, 1000
+            syscall
         POP r8  ;ret
         POP r9  ;pow
         POP r10 ;num
