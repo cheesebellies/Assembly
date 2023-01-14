@@ -29,7 +29,6 @@ section .text                               ;Main code
         PUSH r14                            ;Saving number to be printed on stack
         call cdigits                        ;Counting digits of number
         POP rbx                             ;Saving number of digits to rbx
-        dec rbx                             ;Decrementing it, so it functions well with power function
         mov r8, 10                          ;Saving 10 to r8
         PUSH r8                             ;Saving 10 to stack
         PUSH rbx                            ;Saving number of digits to stack
@@ -82,18 +81,13 @@ section .text                               ;Main code
     pow:                                    ;Function to get a number to the power of another
         POP r8                              ;Save return adress to r8
         POP r9                              ;Save exponent to r9
-        dec r9                              ;Decrement exponent, for compatibility with recursive function
-        neg r9
-        mov eax, 60
-        mov rdi, r9
-        syscall
         POP r10                             ;Save base to r10
         mov r11, r10                        ;Make r11 equal to r10
         powwork:                            ;Recursive function
             imul r10, r11                   ;Multiply base by copy of itself
             dec r9                          ;Decrement loop counter
             mov rax, r9                     ;Make rax equal r9 for comparison below
-            jns powwork                     ;If negative, exit recursive function, else, recurse
+            jnz powwork                     ;If negative, exit recursive function, else, recurse
         xor rdx, rdx                        ;Make rdx zero
         mov rax, r10                        ;Make rax equal to result
         div r11                             ;Divide by base
