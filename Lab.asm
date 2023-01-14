@@ -110,14 +110,14 @@ section .text                               ;Main code
         mov rsi, factors_msg_2              ;           |
         mov rdx, factors_msg_2_len          ;           |
         syscall                             ;End print factors message two
-        POP r9
-        ret
+        POP r9                              ;Save number to r9
+        ret                                 ;Return to location the function was called from
 
 
     _start:                                 ;Linker instruction, code starts execution here
-        mov rax, 50
-        PUSH rax
-        call factors
+        mov rax, 50                         ;Save 50 to rax
+        PUSH rax                            ;Push rax onto stack, for factoring
+        call factors                        ;Factor number
 
 
 ;********************************************************
