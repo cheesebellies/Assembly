@@ -44,12 +44,11 @@ section .text                               ;Main code
         call pow
         POP r8          ;powresult
         mov r9, 10
-        mov r10, 48
         pnum2work:
             mov rax, r14
             xor rdx, rdx
             div r8
-            add rdx, r10
+            add rdx, 48
             mov [temp_var], rdx             ;Save remainder of division to variable, for printing
             mov rax, 1                      ;System write 
             mov rdi, 1                      ;Stdout 
