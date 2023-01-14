@@ -93,23 +93,23 @@ section .text                               ;Main code
         ret                                 ;Return to location the function was called from
             
 
-    factors:
-        POP r8
-        POP r9
-        PUSH r8
-        mov rax, 1
-        mov rdi, 1
-        mov rsi, factors_msg_1
-        mov rdx, factors_msg_1_len
-        syscall
-        PUSH r9
-        PUSH r9
-        call pnum
-        mov rax, 1
-        mov rdi, 1
-        mov rsi, factors_msg_2
-        mov rdx, factors_msg_2_len
-        syscall
+    factors:                                ;Get factors of number (unfinished)
+        POP r8                              ;Save return adress to r8
+        POP r9                              ;Save number to r9
+        PUSH r8                             ;Push return adress back onto stack
+        mov rax, 1                          ;Print factors message one
+        mov rdi, 1                          ;           |
+        mov rsi, factors_msg_1              ;           |
+        mov rdx, factors_msg_1_len          ;           |
+        syscall                             ;End print factors message one
+        PUSH r9                             ;Save number on stack
+        PUSH r9                             ;Push number (for printing) on to stack
+        call pnum                           ;Print number (issue here)
+        mov rax, 1                          ;Print factors message two
+        mov rdi, 1                          ;           |
+        mov rsi, factors_msg_2              ;           |
+        mov rdx, factors_msg_2_len          ;           |
+        syscall                             ;End print factors message two
         POP r9
         ret
 
