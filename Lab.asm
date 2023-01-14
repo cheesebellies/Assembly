@@ -114,6 +114,7 @@ section .text                               ;Main code
         POP r10 ;num
         mov rax, 60
         mov rdi, r10
+        syscall
         mov r11, r10
         mov rcx, r9
         powwork:
