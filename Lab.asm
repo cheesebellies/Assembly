@@ -51,9 +51,9 @@ section .text                               ;Main code
             div r8
             ; add rdx, 48
             mov rax, 60
-            mov rdi, rdx
+            mov rdi, rax
             syscall
-            mov [temp_var], rdx             ;Save remainder of division to variable, for printing
+            mov [temp_var], rax             ;Save remainder of division to variable, for printing
             mov rax, 1                      ;System write 
             mov rdi, 1                      ;Stdout 
             mov rsi, temp_var               ;Message to be sent, in this case, rdx
