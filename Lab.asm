@@ -56,7 +56,7 @@ section .text                               ;Main code
             div r9                          ;Dividing r8 by 10
             mov r8, rax                     ;Making r8 the division result, so when recursing we keep up with each digit in the number to print
             mov rax, r14                    ;Moving number to print to rax
-            cmp rax, 0                      ;Comparing it with zero
+            cmp r8, 0                       ;Comparing it with zero
             jnz pnumwork                    ;If it is zero, stop recursing, else, recurse
         PUSH r15                            ;Pushing return address to top of stack
         ret                                 ;Return to location the function was called from
@@ -115,7 +115,7 @@ section .text                               ;Main code
 
 
     _start:                                 ;Linker instruction, code starts execution here
-        mov rax, 500                         ;Save 50 to rax
+        mov rax, 500                        ;Save 50 to rax
         PUSH rax                            ;Push rax onto stack, for factoring
         call factors                        ;Factor number
 
