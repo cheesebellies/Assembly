@@ -84,8 +84,7 @@ section .text                               ;Main code
             imul r10, r11                   ;Multiply base by copy of itself
             dec r9                          ;Decrement loop counter
             mov rax, r9                     ;Make rax equal r9 for comparison below
-            cmp rax, 1
-            jne powwork                     ;If negative, exit recursive function, else, recurse
+            jnz powwork                     ;If negative, exit recursive function, else, recurse
         xor rdx, rdx                        ;Make rdx zero
         mov rax, r10                        ;Make rax equal to result
         div r11                             ;Divide by base
