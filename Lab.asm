@@ -148,7 +148,7 @@ section .text                               ;Main code
         syscall                             ;Print message
         mov r8, 234
         PUSH r8
-        call pnum                           ;Print number in r8
+        call pnum2                          ;Print number in r8
         mov    eax, 1                       
         mov    edi, 1                       
         mov    rsi, factor_start_message_2    
