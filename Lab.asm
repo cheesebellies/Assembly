@@ -120,7 +120,7 @@ section .text                               ;Main code
         mov r8, 1
         factorswork:
             xor rdx, rdx
-            mov r9, rax
+            mov rax, r9
             div r8
             cmp rdx, 0
             je factorsp
@@ -128,7 +128,7 @@ section .text                               ;Main code
             factorsp:
                 PUSH r8
                 PUSH r9
-                PUSH r9
+                PUSH r8
                 call pnum
                 mov rax, 1                  ;Print factors comma
                 mov rdi, 1                  ;           |
