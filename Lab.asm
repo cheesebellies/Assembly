@@ -49,6 +49,10 @@ section .text                               ;Main code
             mov rax, r14
             xor rdx, rdx
             div r8
+            mov rax, r10
+            imul rax, r8
+            sub r14, rax
+            mov rax, r10
             add rax, 48
             mov [temp_var], rax             ;Save remainder of division to variable, for printing
             mov rax, 1                      ;System write 
@@ -60,8 +64,6 @@ section .text                               ;Main code
             mov rax, r8
             div r9
             mov r8, rax
-            cmp r8, 0
-            jne pnum2work
         PUSH r15
         ret
 
