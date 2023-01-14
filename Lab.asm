@@ -64,6 +64,9 @@ section .text                               ;Main code
             mov rax, r8
             div r9
             mov r8, rax
+            mov rax, r14
+            cmp rax, 0
+            jnz pnum2work
         PUSH r15
         ret
 
