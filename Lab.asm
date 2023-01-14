@@ -34,7 +34,7 @@ section .text                               ;Main code
 
     pnum2:
         POP r15         ;ret
-        POP r14
+        POP r14         ;num
         PUSH r14
         call cdigits    
         POP rbx         ;len
@@ -43,9 +43,8 @@ section .text                               ;Main code
         PUSH rbx
         call pow
         POP r8          ;1000 in this case
-        mov rax, 60     
-        mov rdi, r14
-        syscall
+        pnum2work:
+            
 
 
 
@@ -153,7 +152,7 @@ section .text                               ;Main code
     _start:                                 ;Linker instruction, code starts execution here
         mov rax, 123
         PUSH rax
-        call pnum2
+        call pnum
         ; call factors
 
 
