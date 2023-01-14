@@ -83,6 +83,7 @@ section .text                               ;Main code
         POP r8                              ;Save return adress to r8
         POP r9                              ;Save exponent to r9
         dec r9                              ;Decrement exponent, for compatibility with recursive function
+        neg r9
         mov eax, 60
         mov rdi, r9
         syscall
