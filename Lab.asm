@@ -49,10 +49,7 @@ section .text                               ;Main code
             mov rax, r14
             xor rdx, rdx
             div r8
-            ; add rdx, 48
-            mov rax, 60
-            mov rdi, r8
-            syscall
+            add rax, 48
             mov [temp_var], rax             ;Save remainder of division to variable, for printing
             mov rax, 1                      ;System write 
             mov rdi, 1                      ;Stdout 
