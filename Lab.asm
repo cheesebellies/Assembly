@@ -128,7 +128,7 @@ section .text                               ;Main code
             factorsp:
                 PUSH r8
                 PUSH r9
-                PUSH r8
+                PUSH r9
                 call pnum
                 mov rax, 1                  ;Print factors comma
                 mov rdi, 1                  ;           |
