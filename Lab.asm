@@ -172,7 +172,7 @@ temp_var: times 256 db 0                    ;Save number printing variable with 
 temp_var_len: equ $-temp_var                ;Save the length of temp_var
 factors_msg_1: db 0x0A, 'The factors of '
 factors_msg_1_len: equ $-factors_msg_1
-factors_msg_2: db ' are', 0x3A ' '
+factors_msg_2: db ' are', 0x3A, ' '
 factors_msg_2_len: equ $-factors_msg_2
 factors_comma: db ', '
 factors_comma_len: equ $-factors_comma
