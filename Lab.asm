@@ -35,12 +35,12 @@ section .text                               ;Main code
         call pow                            ;Getting 10^number of digits, for use in printing function
         POP r8                              ;Saving that number to r8
         mov r9, 10                          ;Saving 10 in r9
-        pnumwork:                           ;Recursive function for actually printing number
+        pnumwork:                           ;Looping function for actually printing number
             mov rax, r14                    ;Saving number to print (r14) to rax
             xor rdx, rdx                    ;Making rdx 0, so division doesnt mess up
             div r8                          ;Dividing rax by r8
             mov r10, rax                    ;Saving result to r10
-            imul rax, r8                    ;Multiplying result with r8, so we can subtract it from the number we're printing. EG: num is 123, r8 is 100, rax is 1, then subtracting 100 from 123, so we can recurse with 23 as num.
+            imul rax, r8                    ;Multiplying result with r8, so we can subtract it from the number we're printing. EG: num is 123, r8 is 100, rax is 1, then subtracting 100 from 123, so we can loop with 23 as num.
             sub r14, rax                    ;Subtracting multiplication result from num
             mov rax, r10                    ;Moving result back to rax
             add rax, 48                     ;Adding 48 to rax for unicode, otherwise, printing, for example, 1, wouldent print one but unicode char with code 1
@@ -53,10 +53,10 @@ section .text                               ;Main code
             xor rdx, rdx                    ;Making rdx 0
             mov rax, r8                     ;Making rax r8
             div r9                          ;Dividing r8 by 10
-            mov r8, rax                     ;Making r8 the division result, so when recursing we keep up with each digit in the number to print
+            mov r8, rax                     ;Making r8 the division result, so when looping we keep up with each digit in the number to print
             mov rax, r14                    ;Moving number to print to rax
             cmp r8, 0                       ;Comparing it with zero
-            jnz pnumwork                    ;If it is zero, stop recursing, else, recurse
+            jnz pnumwork                    ;If it is zero, stop looping, else, loop
         PUSH r15                            ;Pushing return address to top of stack
         ret                                 ;Return to location the function was called from
 
@@ -65,12 +65,12 @@ section .text                               ;Main code
         POP rax                             ;Getting number to count digits of, saving to rax
         mov r8, 10                          ;Making r8 10
         mov r9, 0                           ;Making r9 0
-        cdigitswork:                        ;Recursing function
+        cdigitswork:                        ;Looping function
             xor rdx, rdx                    ;Making rdx 0
             div r8                          ;Dividing number to count digits of by 10
             inc r9                          ;Incrementing r9 (number of digits counter variable)
             cmp rax, 0                      ;Comparing division result with 0
-            jnz cdigitswork                 ;If rax is 0, exit recursive function, else, recurse.
+            jnz cdigitswork                 ;If rax is 0, exit loopive function, else, loop.
         PUSH r9                             ;Push result number to stack
         PUSH rbx                            ;Push return adress to stack
         ret                                 ;Return to location the function was called from
@@ -81,15 +81,15 @@ section .text                               ;Main code
         POP r10                             ;Save base to r10
         mov r11, r10                        ;Make r11 equal to r10
         mov rax, r9                         ;Make rax equal r9 for comparison below
-        dec r9
-        jnz powwork                         ;If number isn't zero, go to recursive function
-        jmp powfi                              ;Jump to exit of function if number is zero
-        powwork:                            ;Recursive function
+        dec r9                              ;Make r9 one smaller for compatibility with loopive function
+        jnz powwork                         ;If number isn't zero, go to loopive function
+        jmp powfi                           ;Jump to exit of function if number is zero
+        powwork:                            ;Loopive function
             imul r10, r11                   ;Multiply base by copy of itself
             dec r9                          ;Decrement loop counter
             mov rax, r9                     ;Make rax equal r9 for comparison below
-            jnz powwork                     ;If negative, exit recursive function, else, recurse
-        powfi:
+            jnz powwork                     ;If negative, exit loopive function, else, loop
+        powfi:                              ;Jump here when done with function, to avoid running powwork
         xor rdx, rdx                        ;Make rdx zero
         mov rax, r10                        ;Make rax equal to result
         div r11                             ;Divide by base
@@ -117,32 +117,32 @@ section .text                               ;Main code
         mov rdx, factors_msg_2_len          ;           |
         syscall                             ;End print factors message two
         POP r9                              ;Save number to r9
-        mov r8, 1
-        factorswork:
-            xor rdx, rdx
-            mov rax, r9
-            div r8
-            cmp rdx, 0
-            je factorsp
-            jmp factorsfi
-            factorsp:
-                PUSH r8
-                PUSH r9
-                PUSH r8
-                call pnum
+        mov r8, 1                           ;Move r8, the i in for (int i = 0; etc; etc)
+        factorswork:                        ;Looping function
+            xor rdx, rdx                    ;Make rdx 0
+            mov rax, r9                     ;Make rax r9
+            div r8                          ;Rivide rax by r8, to get remainder and check to see if it is a factor
+            cmp rdx, 0                      ;Check to see if remainder is zero
+            je factorsp                     ;If so, print it
+            jmp factorsfi                   ;If not, skip print
+            factorsp:                       ;Looping function
+                PUSH r8                     ;Save vars on stack, so they aren't overwritten by printing function
+                PUSH r9                     ;       |
+                PUSH r8                     ;End save vars
+                call pnum                   ;Print number
                 mov rax, 1                  ;Print factors comma
                 mov rdi, 1                  ;           |
                 mov rsi, factors_comma      ;           |
                 mov rdx, factors_comma_len  ;           |
                 syscall                     ;End print factors comma
-                POP r9
-                POP r8
-            factorsfi:
-            inc r8
-            cmp r8, r9
-            jne factorswork
-        PUSH r9
-        call pnum
+                POP r9                      ;Recover r9 which was saved on stack
+                POP r8                      ;Recover r8
+            factorsfi:                      ;Jump here when factorsp shouldent be called
+            inc r8                          ;Increment the counter
+            cmp r8, r9                      ;Compare it with the number
+            jne factorswork                 ;If it is equivilent, exit
+        PUSH r9                             ;Push the number to the stack
+        call pnum                           ;Print the number
         mov rax, 1                          ;Print factors comma
         mov rdi, 1                          ;           |
         mov rsi, factors_period             ;           |
