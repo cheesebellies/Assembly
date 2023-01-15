@@ -193,6 +193,11 @@ section .text                               ;Main code
         mov rax, 50                         ;Save 24 to rax
         PUSH rax                            ;Push rax onto stack, for factoring
         call factors                        ;Factor number
+        mov rax, 20
+        mov rbx, 15
+        PUSH rax
+        PUSH rbx
+        call gcd
 
 
 ;********************************************************
