@@ -221,7 +221,7 @@ section .text                               ;Main code
             mov r12, 10
             inputint:
                 cmp byte[rax], 0x0A
-                je inputcountleave
+                je inputfi
                 movzx r9, byte[rax]
                 imul r9, r11
                 xor rdx, rdx
