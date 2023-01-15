@@ -204,7 +204,7 @@ section .text                               ;Main code
             inputcount:
                 cmp byte[rax], 0x0A
                 je inputcountleave
-                mov r10, byte[rax]
+                movzx r10, byte[rax]
                 sub r10, r9
                 add r8, r10
                 inc rax
