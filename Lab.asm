@@ -224,7 +224,7 @@ section .text                               ;Main code
             inputint:       
                 cmp byte[rax], 0x0A
                 je inputfi
-                movzx r8
+                ; movzx r8, 
                 inc rax
                 inc rbx
                 jmp inputcount
