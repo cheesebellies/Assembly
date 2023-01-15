@@ -210,12 +210,23 @@ section .text                               ;Main code
             mov r9, 0
             mov r10, 0
             mov r11, 10
+            mov r14, 48
+            dec r8
             inputgnums:
                 PUSH r11
                 PUSH r10
                 call pow
                 POP r12
-                
+                mov rax, temp_var_i
+                mov r13, byte [rax]
+                sub r13, r14
+                imul r13, r12
+                add r9, r13
+                inc ebx
+                dec r8
+                cmp r8, 0
+                jnz inputgnums
+            PUSH r9
             call pnum
             ret
 
