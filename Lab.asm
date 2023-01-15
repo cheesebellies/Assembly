@@ -209,7 +209,7 @@ section .text                               ;Main code
             xor rbx, rbx
             mov r9, 5
             inputgnums:
-            mov [temp_var], temp_var_reset
+            mov temp_var, temp_var_reset
             PUSH r9
             call pnum
             ret
