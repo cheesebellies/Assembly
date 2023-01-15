@@ -201,8 +201,8 @@ section .text                               ;Main code
             mov rax, temp_var_i
             mov rbx, 0
             inputcount:
-                cmp byte[rax], 0
-                jz inputcountleave
+                cmp byte[rax], 0x0A
+                je inputcountleave
                 inc rax
                 inc rbx
                 jmp inputcount
