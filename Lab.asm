@@ -202,10 +202,10 @@ section .text                               ;Main code
                 jz inputret
                 inc rax
                 inc rbx
-                jmp inputcount
                 mov eax, 60
                 mov rdi, r14
                 syscall
+                jmp inputcount
             inputret:
             dec rbx
             mov r8, rbx
