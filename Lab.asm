@@ -195,6 +195,10 @@ section .text                               ;Main code
             mov rsi, temp_var
             mov rdx, temp_var_len
             syscall
+            mov r8, [temp_var]
+            mov r9, 48
+            sub r8, r9
+            mov [temp_var], r8
             mov rax, 1
             mov rdi, 1
             mov rsi, temp_var
