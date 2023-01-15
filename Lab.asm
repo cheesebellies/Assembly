@@ -193,7 +193,7 @@ section .text                               ;Main code
             mov rax, 0
             mov rdi, 0
             mov rsi, r8
-            mov rsi, r9
+            mov rdx, r9
             syscall
             ret
 
