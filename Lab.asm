@@ -199,7 +199,7 @@ section .text                               ;Main code
             mov rbx, 0
             inputcount:
                 cmp byte [rax], 0
-                jz inputret
+                je inputret
                 inc rax
                 inc rbx
                 jmp inputcount
