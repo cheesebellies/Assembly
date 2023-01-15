@@ -208,16 +208,37 @@ section .text                               ;Main code
                 jmp inputcount
             inputcountleave:
             PUSH rax
-            mov r8, 10
+            mov r12, 10
+            PUSH rbx
             PUSH r12
             PUSH rbx
             call pow
-            POP r8
-            POP r9
+            POP r11
+            POP r13
+            POP rax
+            mov r8, 0
+            mov r9, 0
             mov rbx, 0
-            mov eax, 60
-            movzx rdi, byte[r9]
-            syscall
+            mov r12, 10
+            sub rax, r13
+            inputint:
+                cmp byte[rax], 0x0A
+                je inputfi
+                movzx r9, byte[rax]
+                imul r9, r11
+                xor rdx, rdx
+                PUSH rax
+                mov rax, r11
+                div r12
+                mov r11, rax
+                POP rax
+                add r8, r9
+                inc rax
+                inc rbx
+                jmp inputcount
+            inputfi:
+            PUSH r8
+            call pnum
             ret
 
 
