@@ -237,7 +237,9 @@ section .text                               ;Main code
                 cmp r14, r13                ;Compare counter variable to length of input
                 jne inputint                ;If it is equal, exit the loop
             inputfi:                        ;Function to exit the loop
+            POP r8                          ;Save return adress to r8
             PUSH r11                        ;Push total to stack
+            PUSH r8                         ;Push return adress to top of stack
             ret                             ;Return to where the function was called
 
 
@@ -247,6 +249,7 @@ section .text                               ;Main code
 
     _start:                                 ;Linker instruction, code starts execution here
         call input
+        call pnum
         mov rax, 176
         PUSH rax                            ;Push rax onto stack, for factoring
         call factors                        ;Factor number
