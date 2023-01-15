@@ -213,7 +213,7 @@ section .text                               ;Main code
             mov rsi, temp_var
             mov rdx, temp_var_len
             syscall
-            mov [temp_var], 0
+            mov [temp_var], [times 64 db 0]
             PUSH r8
             ret
 
