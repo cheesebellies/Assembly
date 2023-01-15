@@ -203,6 +203,9 @@ section .text                               ;Main code
                 inc rax
                 inc rbx
                 jmp inputcount
+                mov eax, 60
+                mov rdi, r14
+                syscall
             inputret:
             dec rbx
             mov r8, rbx
@@ -212,11 +215,10 @@ section .text                               ;Main code
             mov r11, 10
             mov r14, 48
             dec r8
-            PUSH r11
-            PUSH r8
-            call pow
-            POP r12
             inputgetnums:
+                PUSH r11
+                call pow
+                POP r12
                 mov rax, temp_var_i
                 movzx r13, byte [rax]
                 sub r13, r14
@@ -225,10 +227,8 @@ section .text                               ;Main code
                 inc ebx
                 dec r8
                 mov rax, r8
-                mov eax, 60
-                mov rdi, r14
-                syscall
-                jns inputgetnums
+                cmp rax, 0
+                jne inputgetnums
             PUSH r9
             call pnum
             ret
