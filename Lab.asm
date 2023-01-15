@@ -183,11 +183,8 @@ section .text                               ;Main code
                 jg gcdfi
                 inc r10
                 jmp gcdwork
-                mov eax, 60
-                mov rdi, r8
-                syscall
         gcdfi:
-        POP r11
+        PUSH r11
         call pnum
         ret
 
