@@ -216,7 +216,7 @@ section .text                               ;Main code
             call pow
             POP r9
             POP r8
-            POP rcx
+            POP r13
             mov r10, 10
             mov r11, 0
             mov r12, 0
@@ -229,7 +229,10 @@ section .text                               ;Main code
                 div r10
                 mov r9, rax
                 inc r8
-                loop inputint
+                inc r13
+                mov rax, r13
+                cmp rax, 0
+                jnz inputint
             inputfi:
             PUSH r11
             call pnum
