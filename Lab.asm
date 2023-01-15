@@ -203,7 +203,7 @@ section .text                               ;Main code
                 inc rax
                 inc rbx
                 mov eax, 60
-                mov rdi, r14
+                mov rdi, rax
                 syscall
                 jmp inputcount
             inputret:
