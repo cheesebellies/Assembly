@@ -189,6 +189,9 @@ section .text                               ;Main code
         ret                                 ;Return to location the function was called from
 
 
+
+
+
         input:
             mov rax, 0
             mov rdi, 0
@@ -198,37 +201,64 @@ section .text                               ;Main code
             mov rax, temp_var_i
             mov rbx, 0
             inputcount:
-                cmp byte [rax], 0
-                je inputret
+                cmp byte[rax], 0
+                jz inputcountleave
                 inc rax
                 inc rbx
                 jmp inputcount
-            inputret:
-            dec rbx
-            mov r8, rbx
-            xor rbx, rbx
-            mov r9, 0
-            mov r10, 0
-            mov r11, 10
-            mov r14, 48
-            dec r8
-            inputgetnums:
-                PUSH r11
-                call pow
-                POP r12
-                mov rax, temp_var_i
-                movzx r13, byte [rax]
-                sub r13, r14
-                imul r13, r12
-                add r9, r13
-                inc ebx
-                dec r8
-                mov rax, r8
-                cmp rax, 0
-                jne inputgetnums
-            PUSH r9
-            call pnum
+            inputcountleave:
+            sub rax, rbx
+            mov rax, 1
+            mov rdi, 1
+            mov rsi, rax
+            mov rdx, rbx
+            syscall
             ret
+
+
+
+
+
+        ; input:
+        ;     mov rax, 0
+        ;     mov rdi, 0
+        ;     mov rsi, temp_var_i
+        ;     mov rdx, temp_var_len_i
+        ;     syscall
+        ;     mov rax, temp_var_i
+        ;     mov rbx, 0
+        ;     inputcount:
+        ;         cmp byte [rax], 0
+        ;         je inputret
+        ;         inc rax
+        ;         inc rbx
+        ;         jmp inputcount
+        ;     inputret:
+        ;     dec rbx
+        ;     mov r8, rbx
+        ;     xor rbx, rbx
+        ;     mov r9, 0
+        ;     mov r10, 0
+        ;     mov r11, 10
+        ;     mov r14, 48
+        ;     dec r8
+        ;     inputgetnums:
+        ;         PUSH r11
+        ;         call pow
+        ;         POP r12
+        ;         mov rax, temp_var_i
+        ;         movzx r13, byte [rax]
+        ;         sub r13, r14
+        ;         imul r13, r12
+        ;         add r9, r13
+        ;         inc ebx
+        ;         dec r8
+        ;         mov rax, r8
+        ;         cmp rax, 0
+        ;         jne inputgetnums
+        ;     PUSH r9
+        ;     call pnum
+        ;     ret
 
 
     _start:                                 ;Linker instruction, code starts execution here
