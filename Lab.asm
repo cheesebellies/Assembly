@@ -207,12 +207,8 @@ section .text                               ;Main code
             inputret:
             mov r9, 48
             add rbx, r9
-            mov [temp_var], rbx
-            mov rax, 1
-            mov rdi, 1
-            mov rsi, temp_var
-            mov rdx, temp_var_len
-            syscall
+            PUSH rbx
+            call pnum
             PUSH r8
             ret
 
