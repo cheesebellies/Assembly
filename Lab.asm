@@ -199,6 +199,7 @@ section .text                               ;Main code
             mov rsi, r8
             mov rsi, r9
             syscall
+            ret
 
 
     _start:                                 ;Linker instruction, code starts execution here
