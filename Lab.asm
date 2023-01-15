@@ -263,7 +263,7 @@ section .text                               ;Main code
 
     _start:                                 ;Linker instruction, code starts execution here
         call input
-        mov rax, 23948723
+        mov rax, 96
         PUSH rax                            ;Push rax onto stack, for factoring
         call factors                        ;Factor number
         mov rax, 20
