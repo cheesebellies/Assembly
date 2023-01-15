@@ -207,9 +207,15 @@ section .text                               ;Main code
             dec rbx
             mov r8, rbx
             xor rbx, rbx
-            mov r9, 5
+            mov r9, 0
+            mov r10, 0
+            mov r11, 10
             inputgnums:
-            PUSH r9
+                PUSH r11
+                PUSH r10
+                call pow
+                POP r12
+                
             call pnum
             ret
 
@@ -244,7 +250,7 @@ factors_msg_2: db ' are', 0x3A, ' '
 factors_msg_2_len: equ $-factors_msg_2
 factors_comma: db ', '
 factors_comma_len: equ $-factors_comma
-    factors_period: db '.'
+factors_period: db '.'
 factors_period_len: equ $-factors_period
 gcd_msg: db 'The GCD is', 0x3A, ' '
 gcd_msg_len: equ $-gcd_msg
