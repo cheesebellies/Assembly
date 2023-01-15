@@ -217,9 +217,9 @@ section .text                               ;Main code
             POP r9
             POP r13
             POP r8
-            ; mov eax, 60
-            ; mov rdi, r13
-            ; syscall
+            mov eax, 60
+            mov rdi, r9
+            syscall
             mov r10, 10
             mov r11, 0
             mov r12, 0
