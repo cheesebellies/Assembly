@@ -207,14 +207,12 @@ section .text                               ;Main code
                 inc rbx
                 jmp inputcount
             inputcountleave:
-            PUSH rbx
-            call pnum
             mov r10, 0
             mov r11, 1
             mov r12, 10
             mov r8, 0
             inputint:
-                cmp rbx, 1
+                cmp rbx, 0
                 je inputfi
                 movzx r8, byte[rax]
                 imul r8, r11
