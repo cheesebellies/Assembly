@@ -222,7 +222,6 @@ section .text                               ;Main code
             inputint:
                 cmp byte[rax], 0x0A
                 je inputfi
-                mov r9, 1
                 movzx r9, byte[rax]
                 imul r9, r11
                 xor rdx, rdx
