@@ -219,15 +219,15 @@ section .text                               ;Main code
                 POP r12
                 mov rax, temp_var_i
                 movzx r13, byte [rax]
-                mov eax, 60
-                mov edi, 0
-                syscall
                 sub r13, r14
                 imul r13, r12
                 add r9, r13
                 inc ebx
                 dec r8
                 cmp r8, 0
+                mov eax, 60
+                mov edi, 0
+                syscall
                 jnz inputgnums
             PUSH r9
             call pnum
