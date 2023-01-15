@@ -208,10 +208,12 @@ section .text                               ;Main code
                 jmp inputcount
             inputcountleave:
             sub rax, rbx
+            mov r8, rax
+            mov r9, rbx
             mov rax, 1
             mov rdi, 1
-            mov rsi, rax
-            mov rdx, rbx
+            mov rsi, r8
+            mov rdx, r9
             syscall
             ret
 
