@@ -216,9 +216,6 @@ section .text                               ;Main code
         call gcd
 
 
-;********************************************************
-;                       System exit
-;********************************************************
 
     mov    eax, 60                          ;System exit code
     mov    rdi, 0                           ;Success code
