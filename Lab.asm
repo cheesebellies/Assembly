@@ -166,6 +166,9 @@ section .text                               ;Main code
         mov r12, r9
         cmp r8, r9
         cmovg r12, r8
+        mov eax, 60
+        mov rdi, r8
+        syscall
         gcdwork:
             xor rdx, rdx
             mov rax, r8
