@@ -227,7 +227,7 @@ section .text                               ;Main code
 
 section .data                               ;Data for use in program
 
-temp_var: times 256 db 0                    ;Save number printing variable with a buffer
+temp_var: times 64 db 0                    ;Save number printing variable with a buffer
 temp_var_len: equ $-temp_var                ;Save the length of temp_var
 factors_msg_1: db 0x0A, 'The factors of '
 factors_msg_1_len: equ $-factors_msg_1
