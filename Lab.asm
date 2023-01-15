@@ -190,26 +190,29 @@ section .text                               ;Main code
 
 
         input:
+            POP r8
             mov rax, 0
             mov rdi, 0
             mov rsi, temp_var
             mov rdx, temp_var_len
             syscall
-            mov r10, 10
-            mov r8, [temp_var]
+            mov rax, temp_var
+            mov rbx, 0
+            inputcount:
+                cmp byte [rax], 0
+                jz inputret
+                inc rax
+                inc rbx
+                jmp inputcount
             mov r9, 48
-            sub r8, r9
-            imul r8, r10
-            mov [temp_var], r8
-            mov r8, [temp_var]
-            mov r9, 48
-            add r8, r9
-            mov [temp_var], r8
+            add rbx, r9
+            mov [temp_var], rbx
             mov rax, 1
             mov rdi, 1
             mov rsi, temp_var
             mov rdx, temp_var_len
             syscall
+            PUSH r8
             ret
 
 
