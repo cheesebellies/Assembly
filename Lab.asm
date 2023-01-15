@@ -152,41 +152,41 @@ section .text                               ;Main code
 
 
     gcd:
-        POP rax
-        POP r8
-        POP r9
-        PUSH rax
+        POP rax                             ;Save return adress to rax
+        POP r8                              ;Save num 1 to r8
+        POP r9                              ;Save num 2 to r9
+        PUSH rax                            ;Push return adress back onto stak
         mov rax, 1                          ;Print gcd message
         mov rdi, 1                          ;           |
         mov rsi, gcd_msg                    ;           |
         mov rdx, gcd_msg_len                ;           |
         syscall                             ;End print gcd message
-        mov r10, 1
-        mov r11, 0
-        mov r12, r9
-        cmp r8, r9
-        cmovg r12, r8
-        gcdwork:
-            xor rdx, rdx
-            mov rax, r8
-            div r10
-            cmp rdx, 0
-            jne gcdworkr
-            xor rdx, rdx
-            mov rax, r9
-            div r10
-            cmp rdx, 0
-            jne gcdworkr
-            mov r11, r10
-            gcdworkr:
-                cmp r10, r12
-                jg gcdfi
-                inc r10
-                jmp gcdwork
-        gcdfi:
-        PUSH r11
-        call pnum
-        ret
+        mov r10, 1                          ;Make r10 counter variable, set to one
+        mov r11, 0                          ;Make r11 the GCD var, set to zero
+        mov r12, r9                         ;Make r12 equal r9
+        cmp r8, r9                          ;Compare to see which number is larger
+        cmovg r12, r8                       ;If r8 is larger, move it to r12, else keep it at r9
+        gcdwork:                            ;Looping function
+            xor rdx, rdx                    ;Set rdx to one for division
+            mov rax, r8                     ;Set rax to r8 for division
+            div r10                         ;Divide r8 by the counter variable
+            cmp rdx, 0                      ;Compare the remainder with zero
+            jne gcdworkr                    ;If it isn't equal, jump to gcdworkr
+            xor rdx, rdx                    ;Set rdx to zero
+            mov rax, r9                     ;Set rax to r9
+            div r10                         ;Divide r9 by counter
+            cmp rdx, 0                      ;Compare remainder with zero
+            jne gcdworkr                    ;If it isn't equal, jump to gcdworkr
+            mov r11, r10                    ;If both r8%counter and r9%counter are zero, that is a common divisor, so set r11 to that divisor
+            gcdworkr:                       ;Function to continue the loop
+                cmp r10, r12                ;Compare counter and the larger of the two numbers
+                jg gcdfi                    ;If it is greater, jump to gcdfi
+                inc r10                     ;Else increment r10
+                jmp gcdwork                 ;Jump to gcdwork to loop again
+        gcdfi:                              ;Jump here when loop is done
+        PUSH r11                            ;Push GCD to stack to be printed
+        call pnum                           ;Print gcd
+        ret                                 ;Return to location the function was called from
 
 
     _start:                                 ;Linker instruction, code starts execution here
