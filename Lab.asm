@@ -172,13 +172,13 @@ section .text                               ;Main code
             div r10
             mov rax, rdx
             cmp rax, 0
-            jnz gcdworkr
+            jne gcdworkr
             xor rdx, rdx
             mov rax, r9
             div r10
             mov rax, rdx
             cmp rax, 0
-            jnz gcdworkr
+            jne gcdworkr
             mov r11, r10
             gcdworkr:
             cmp r10, r12
