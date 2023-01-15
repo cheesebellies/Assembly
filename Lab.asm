@@ -192,8 +192,8 @@ section .text                               ;Main code
         input:
             mov rax, 0
             mov rdi, 0
-            mov rsi, r8
-            mov rdx, r9
+            mov rsi, temp_var
+            mov rdx, temp_var_len
             syscall
             ret
 
