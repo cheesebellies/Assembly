@@ -210,6 +210,7 @@ section .text                               ;Main code
             mov r10, 0
             mov r11, 1
             mov r12, 10
+            mov r8, 0
             inputint:
                 cmp rbx, 1
                 je inputfi
