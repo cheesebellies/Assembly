@@ -224,7 +224,7 @@ section .text                               ;Main code
                 je inputfi
                 movzx r9, byte[rax]
                 mov eax, 60
-                mov rdi, r9
+                mov rdi, 0
                 syscall
                 imul r9, r11
                 xor rdx, rdx
