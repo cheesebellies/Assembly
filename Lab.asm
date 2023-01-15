@@ -214,6 +214,7 @@ section .text                               ;Main code
             call pow
             POP r11
             POP rax
+            mov ebx, 0
             mov eax, 60
             movzx rdi, byte[rax]
             syscall
