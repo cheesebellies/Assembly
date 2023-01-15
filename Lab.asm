@@ -202,9 +202,6 @@ section .text                               ;Main code
                 jz inputret
                 inc rax
                 inc rbx
-                mov eax, 60
-                mov rdi, rax
-                syscall
                 jmp inputcount
             inputret:
             dec rbx
@@ -256,8 +253,8 @@ section .data                               ;Data for use in program
 
 temp_var: times 64 db 0                     ;Save number printing variable with a buffer
 temp_var_len: equ $-temp_var                ;Save the length of temp_var
-temp_var_i: times 64 db 0                   ;Save number printing variable with a buffer
-temp_var_len_i: equ $-temp_var_i            ;Save the length of temp_var
+temp_var_i: times 64 db 0                   ;Save number input variable with a buffer
+temp_var_len_i: equ $-temp_var_i            ;Save the length of temp_var_i
 factors_msg_1: db 0x0A, 'The factors of '
 factors_msg_1_len: equ $-factors_msg_1
 factors_msg_2: db ' are', 0x3A, ' '
