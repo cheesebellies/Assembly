@@ -207,6 +207,13 @@ section .text                               ;Main code
             inputcount:
                 cmp byte[rax], 0x0A
                 je inputcountleave
+                inc rax
+                inc r12
+                jmp inputcount
+            inputcountleave:
+            inputint:
+                cmp r12, 0
+                je inputfi
                 movzx r10, byte[rax]
                 sub r10, r9
                 PUSH r8
@@ -227,10 +234,10 @@ section .text                               ;Main code
                 POP r8
                 imul r10, r13
                 add r8, r10
-                inc rax
-                inc r12
-                jmp inputcount
-            inputcountleave:
+                dec rax
+                dec r12
+                jmp inputint
+            inputfi:
             PUSH r8
             call pnum
             ret
