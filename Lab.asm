@@ -210,7 +210,6 @@ section .text                               ;Main code
             sub r8, r9
             mov r10, 10
             mov r11, 0
-            mov r14, 48
             inputint:
                 cmp byte[r8], 0x0A
                 je inputfi
@@ -229,6 +228,7 @@ section .text                               ;Main code
                 POP r9
                 POP r8
                 movzx r13, byte[r8]
+                mov r14, 48
                 sub r13, r14
                 imul r13, r12
                 add r11, r13
