@@ -223,8 +223,9 @@ section .text                               ;Main code
                 add r9, r13
                 inc ebx
                 dec r8
-                cmp r8, 0
-                jne inputgetnums
+                mov rax, r8
+                cmp rax, 0
+                jnz inputgetnums
             PUSH r9
             call pnum
             ret
