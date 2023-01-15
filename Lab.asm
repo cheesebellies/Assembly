@@ -232,7 +232,7 @@ section .text                               ;Main code
                 inc r13
                 mov rax, r13
                 cmp rax, 0
-                jnz inputint
+                jne inputint
             inputfi:
             PUSH r11
             call pnum
