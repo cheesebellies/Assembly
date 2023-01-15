@@ -181,10 +181,10 @@ section .text                               ;Main code
             gcdworkr:
                 cmp r10, r12
                 jg gcdfi
+                inc r10
                 mov eax, 60
                 mov rdi, r8
                 syscall
-                inc r10
                 jmp gcdwork
         gcdfi:
         POP r11
