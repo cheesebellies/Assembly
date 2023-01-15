@@ -212,7 +212,7 @@ section .text                               ;Main code
                 jmp inputcount
             inputcountleave:
             inputint:
-                cmp r12, 0
+                cmp r12, 1
                 je inputfi
                 movzx r10, byte[rax]
                 sub r10, r9
