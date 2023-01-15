@@ -170,14 +170,12 @@ section .text                               ;Main code
             xor rdx, rdx
             mov rax, r8
             div r10
-            mov rax, rdx
-            cmp rax, 0
+            cmp rdx, 0
             jne gcdworkr
             xor rdx, rdx
             mov rax, r9
             div r10
-            mov rax, rdx
-            cmp rax, 0
+            cmp rdx, 0
             jne gcdworkr
             mov r11, r10
             gcdworkr:
