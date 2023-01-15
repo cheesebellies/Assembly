@@ -222,22 +222,13 @@ section .text                               ;Main code
             inputint:
                 cmp byte[rax], 0x0A
                 je inputfi
-                movzx r9, byte[rax]
-                imul r9, r11
-                xor rdx, rdx
-                PUSH rax
-                mov rax, r11
-                div r12
-                mov r11, rax
-                POP rax
-                add r8, r9
                 inc rax
                 inc rbx
                 jmp inputcount
             inputfi:
-                mov eax, 60
-                mov rdi, rbx
-                syscall
+            mov eax, 60
+            mov rdi, rbx
+            syscall
             PUSH r8
             call pnum
             ret
