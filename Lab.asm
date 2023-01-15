@@ -217,8 +217,6 @@ section .text                               ;Main code
             POP r9
             POP r13
             POP r8
-            PUSH r8
-            call pnum
             mov r10, 10
             mov r11, 0
             mov r12, 0
