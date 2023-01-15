@@ -231,7 +231,7 @@ section .text                               ;Main code
                 inc r8
                 inc r13
                 mov rax, r13
-                cmp rax, 0
+                cmp rax, 1
                 jne inputint
             inputfi:
             PUSH r11
