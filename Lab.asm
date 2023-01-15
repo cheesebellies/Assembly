@@ -220,6 +220,7 @@ section .text                               ;Main code
             mov r10, 10
             mov r11, 0
             mov r12, 0
+            mov r14, 0
             inputint:
                 movzx r12, byte[r8]
                 imul r12, r9
@@ -229,8 +230,8 @@ section .text                               ;Main code
                 div r10
                 mov r9, rax
                 inc r8
-                inc r13
-                cmp r13, 0
+                inc r14
+                cmp r14, r13
                 jne inputint
             inputfi:
             PUSH r11
