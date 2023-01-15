@@ -190,7 +190,6 @@ section .text                               ;Main code
 
 
         input:
-            POP r8
             mov rax, 0
             mov rdi, 0
             mov rsi, temp_var
@@ -205,16 +204,14 @@ section .text                               ;Main code
                 inc rbx
                 jmp inputcount
             inputret:
-            mov r9, 48
-            add rbx, r9
-            mov [temp_var], rbx
-            mov rax, 1
-            mov rdi, 1
-            mov rsi, temp_var
-            mov rdx, temp_var_len
-            syscall
-            mov [temp_var], [times 64 db 0]
-            PUSH r8
+            dec rbx
+            mov r8, rbx
+            xor rbx, rbx
+            mov r9, 0
+            inputgnums:
+
+            PUSH r9
+            call pnum
             ret
 
 
