@@ -213,13 +213,14 @@ section .text                               ;Main code
             inputint:
                 cmp rbx, 0
                 je inputfi
-                imulzx byte [rax], r11
-                add r10, rax
+                movzx r8, byte[rax]
+                imul r8, r11
+                add r10, r8
                 dec rbx
                 imul r11, r12
                 jmp inputint
             inputfi:
-            PUSH rax
+            PUSH r10
             call pnum
             ret
 
