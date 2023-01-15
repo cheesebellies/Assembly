@@ -204,6 +204,7 @@ section .text                               ;Main code
                 inc rax
                 inc rbx
                 jmp inputcount
+            inputret:
             mov r9, 48
             add rbx, r9
             mov [temp_var], rbx
