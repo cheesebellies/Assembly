@@ -189,7 +189,20 @@ section .text                               ;Main code
         ret                                 ;Return to location the function was called from
 
 
+        input:
+            POP rax
+            POP r8
+            POP r9
+            PUSH rax
+            mov rax, 0
+            mov rdi, 0
+            mov rsi, r8
+            mov rsi, r9
+            
+
+
     _start:                                 ;Linker instruction, code starts execution here
+
         mov rax, 50                         ;Save 24 to rax
         PUSH rax                            ;Push rax onto stack, for factoring
         call factors                        ;Factor number
