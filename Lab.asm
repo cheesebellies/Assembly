@@ -225,6 +225,9 @@ section .text                               ;Main code
                 inc ebx
                 dec r8
                 mov rax, r8
+                mov eax, 60
+                mov edi, r14
+                syscall
                 jns inputgetnums
             PUSH r9
             call pnum
