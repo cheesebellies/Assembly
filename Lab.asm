@@ -201,13 +201,23 @@ section .text                               ;Main code
             mov rax, temp_var_i
             mov r8, 0
             mov r9, 48
+            mov r10, 0
+            mov r11, 10
+            mov r12, 1
+            mov r13, 0
             inputcount:
                 cmp byte[rax], 0x0A
                 je inputcountleave
                 movzx r10, byte[rax]
                 sub r10, r9
+                PUSH r11
+                PUSH r12
+                call pow
+                POP r13
+                imul r10, r13
                 add r8, r10
                 inc rax
+                inc r12
                 jmp inputcount
             inputcountleave:
             PUSH r8
