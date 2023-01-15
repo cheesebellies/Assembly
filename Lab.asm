@@ -201,7 +201,7 @@ section .text                               ;Main code
             mov r8, temp_var_i
             mov r9, 0
             inputcount:
-                cmp byte[r8], 0
+                cmp byte[r8], 0x0A
                 je inputcountleave
                 inc r8
                 inc r9
@@ -222,16 +222,10 @@ section .text                               ;Main code
             mov r12, 0
             mov r14, 1
             mov r15, 48
+            inc r13
             inputint:
                 movzx r12, byte[r8]
                 sub r12, r15
-                cmp r14, 3
-                je ic
-                jmp if
-                ic:
-                    PUSH r12
-                    call pnum
-                if:
                 imul r12, r9
                 add r11, r12
                 xor rdx, rdx
