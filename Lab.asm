@@ -212,12 +212,12 @@ section .text                               ;Main code
             mov r11, 10
             mov r14, 48
             dec r8
-            mov eax, 60
-            mov edi, 0
-            syscall
             inputgnums:
                 PUSH r11
                 PUSH r10
+                mov eax, 60
+                mov edi, 0
+                syscall
                 call pow
                 POP r12
                 mov rax, temp_var_i
