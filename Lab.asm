@@ -151,7 +151,7 @@ section .text                               ;Main code
         ret                                 ;Return to location the function was called from
 
 
-    gcd:
+    gcd:                                    ;Function to get the greatest common divisor
         POP rax                             ;Save return adress to rax
         POP r8                              ;Save num 1 to r8
         POP r9                              ;Save num 2 to r9
@@ -224,22 +224,21 @@ section .text                               ;Main code
             mov r15, 48                     ;Make r15 48 - for converting ASCII to integer
             inc r13                         ;Make r13 one larger
             inputint:                       ;Function to convert ASCII to integer
-                movzx r12, byte[r8]
-                sub r12, r15
-                imul r12, r9
-                add r11, r12
-                xor rdx, rdx
-                mov rax, r9
-                div r10
-                mov r9, rax
-                inc r8
-                inc r14
-                cmp r14, r13
-                jne inputint
-            inputfi:
-            PUSH r11
-            call pnum
-            ret
+                movzx r12, byte[r8]         ;Make temporary variable equal to first digit of input
+                sub r12, r15                ;Subtract 48 from digit to make it an int
+                imul r12, r9                ;Multiply it by 10^digit place - eg. 123 -> 1*100 + 2*10 + 3*1
+                add r11, r12                ;Add temporary variable to total variable
+                xor rdx, rdx                ;Make rdx zero
+                mov rax, r9                 ;Make rax equal to 10^length var
+                div r10                     ;Divide rax by 10
+                mov r9, rax                 ;Make r9 equal to result
+                inc r8                      ;Increment adress of input
+                inc r14                     ;Input counter variable
+                cmp r14, r13                ;Compare counter variable to length of input
+                jne inputint                ;If it is equal, exit the loop
+            inputfi:                        ;Function to exit the loop
+            PUSH r11                        ;Push total to stack
+            ret                             ;Return to where the function was called
 
 
 
