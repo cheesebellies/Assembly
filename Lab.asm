@@ -234,9 +234,6 @@ section .text                               ;Main code
                 inc rbx
                 jmp inputcount
             inputfi:
-            mov eax, 60
-            mov rdi, rbx
-            syscall
             PUSH r8
             call pnum
             ret
