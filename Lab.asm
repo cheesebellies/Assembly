@@ -204,7 +204,6 @@ section .text                               ;Main code
             mov r10, 0
             mov r11, 10
             mov r12, 1
-            mov r13, 0
             inputcount:
                 cmp byte[rax], 0x0A
                 je inputcountleave
@@ -227,47 +226,6 @@ section .text                               ;Main code
 
 
 
-
-        ; input:
-        ;     mov rax, 0
-        ;     mov rdi, 0
-        ;     mov rsi, temp_var_i
-        ;     mov rdx, temp_var_len_i
-        ;     syscall
-        ;     mov rax, temp_var_i
-        ;     mov rbx, 0
-        ;     inputcount:
-        ;         cmp byte [rax], 0
-        ;         je inputret
-        ;         inc rax
-        ;         inc rbx
-        ;         jmp inputcount
-        ;     inputret:
-        ;     dec rbx
-        ;     mov r8, rbx
-        ;     xor rbx, rbx
-        ;     mov r9, 0
-        ;     mov r10, 0
-        ;     mov r11, 10
-        ;     mov r14, 48
-        ;     dec r8
-        ;     inputgetnums:
-        ;         PUSH r11
-        ;         call pow
-        ;         POP r12
-        ;         mov rax, temp_var_i
-        ;         movzx r13, byte [rax]
-        ;         sub r13, r14
-        ;         imul r13, r12
-        ;         add r9, r13
-        ;         inc ebx
-        ;         dec r8
-        ;         mov rax, r8
-        ;         cmp rax, 0
-        ;         jne inputgetnums
-        ;     PUSH r9
-        ;     call pnum
-        ;     ret
 
 
     _start:                                 ;Linker instruction, code starts execution here
