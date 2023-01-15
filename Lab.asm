@@ -218,10 +218,10 @@ section .text                               ;Main code
                 call pow
                 POP r12
                 mov rax, temp_var_i
-                mov r13b, byte [rax]
-                sub r13b, r14
-                imul r13b, r12
-                add r9, r13b
+                movzx r13, byte [rax]
+                sub r13, r14
+                imul r13, r12
+                add r9, r13
                 inc ebx
                 dec r8
                 cmp r8, 0
