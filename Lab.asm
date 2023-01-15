@@ -212,7 +212,7 @@ section .text                               ;Main code
             mov r11, 0
             inputint:
                 cmp byte[r8], 0x0A
-                je inputcountleave
+                je inputfi
                 inc r8
                 inc r9
                 PUSH r8
@@ -230,7 +230,7 @@ section .text                               ;Main code
                 movzx r13, byte[r8]
                 imul r13, r12
                 add r11, r13
-                jmp inputcount
+                jmp inputint
             inputfi:
             PUSH r8
             call pnum
