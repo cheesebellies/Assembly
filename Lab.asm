@@ -213,7 +213,7 @@ section .text                               ;Main code
             inputint:
                 cmp rbx, 0
                 je inputfi
-                imul byte [rax], r11
+                imulzx byte [rax], r11
                 add r10, rax
                 dec rbx
                 imul r11, r12
