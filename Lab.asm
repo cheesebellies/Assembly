@@ -171,9 +171,6 @@ section .text                               ;Main code
             mov rax, r8
             div r10
             mov rax, rdx
-            mov eax, 60
-        mov rdi, r8
-        syscall
             jnz gcdworkr
             xor rdx, rdx
             mov rax, r9
@@ -181,6 +178,9 @@ section .text                               ;Main code
             mov rax, rdx
             jnz gcdworkr
             mov r11, r10
+            mov eax, 60
+        mov rdi, r8
+        syscall
             gcdworkr:
             cmp r10, r12
             jg gcdfi
