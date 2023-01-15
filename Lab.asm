@@ -208,11 +208,6 @@ section .text                               ;Main code
                 jmp inputcount
             inputcountleave:
             sub r8, r9
-            mov rax, 1
-            mov rdi, 1
-            mov rsi, r8
-            mov rdx, r9
-            syscall
             inputfi:
             PUSH r8
             call pnum
