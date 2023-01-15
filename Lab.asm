@@ -220,7 +220,7 @@ section .text                               ;Main code
             mov r10, 10
             mov r11, 0
             mov r12, 0
-            mov r14, 0
+            mov r14, 1
             inputint:
                 movzx r12, byte[r8]
                 imul r12, r9
