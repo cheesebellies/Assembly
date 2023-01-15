@@ -199,43 +199,26 @@ section .text                               ;Main code
             mov rdx, temp_var_len_i
             syscall
             mov rax, temp_var_i
-            mov r8, 0
-            mov r9, 48
-            mov r10, 0
-            mov r11, 10
-            mov r12, 1
+            mov rbx, 1
             inputcount:
-                cmp byte[rax], 0x0A
+                cmp byte[r8], 0x0A
                 je inputcountleave
                 inc rax
-                inc r12
+                inc rbx
                 jmp inputcount
             inputcountleave:
+            mov r8, rax
+            mov r10, 0
+            mov r11, 1
+            mov r12, 10
             inputint:
-                cmp r12, 1
+                cmp rbx, 0
                 je inputfi
-                movzx r10, byte[rax]
-                sub r10, r9
-                PUSH r8
-                PUSH r9
-                PUSH r10
-                PUSH r11
-                PUSH r12
-                PUSH rax
-                PUSH r11
-                PUSH r12
-                call pow
-                POP r13
-                POP rax
-                POP r12
-                POP r11
-                POP r10
-                POP r9
-                POP r8
-                imul r10, r13
-                add r8, r10
-                dec rax
-                dec r12
+                movzx rax, byte[r8]
+                imul rax, r11
+                add r10, rax
+                dec rbx
+                imul r11, r12
                 jmp inputint
             inputfi:
             PUSH r8
