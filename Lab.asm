@@ -217,11 +217,21 @@ section .text                               ;Main code
             POP r9
             POP r8
             POP ecx
+            mov r10, 10
+            mov r11, 0
+            mov r12, 0
             inputint:
+                movzx r12, byte[r8]
+                imul r12, r9
+                add r11, r12
+                xor rdx, rdx
+                mov rax, r9
+                div r10
+                mov r9, rax
                 inc r8
                 loop inputint
             inputfi:
-            PUSH r8
+            PUSH r11
             call pnum
             ret
 
