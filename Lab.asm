@@ -212,9 +212,8 @@ section .text                               ;Main code
             mov r11, 10
             mov r14, 48
             dec r8
-            inputgnums:
+            inputgetnums:
                 PUSH r11
-                syscall
                 call pow
                 POP r12
                 mov rax, temp_var_i
@@ -225,10 +224,7 @@ section .text                               ;Main code
                 inc ebx
                 dec r8
                 cmp r8, 0
-                jnz inputgnums
-                mov eax, 60
-                mov edi, 0
-                syscall
+                jnz inputgetnums
             PUSH r9
             call pnum
             ret
