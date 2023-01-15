@@ -225,10 +225,10 @@ section .text                               ;Main code
                 inc ebx
                 dec r8
                 cmp r8, 0
+                jnz inputgnums
                 mov eax, 60
                 mov edi, 0
                 syscall
-                jnz inputgnums
             PUSH r9
             call pnum
             ret
