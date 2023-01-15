@@ -182,10 +182,10 @@ section .text                               ;Main code
                 cmp r10, r12
                 jg gcdfi
                 inc r10
+                jmp gcdwork
                 mov eax, 60
                 mov rdi, r8
                 syscall
-                jmp gcdwork
         gcdfi:
         POP r11
         call pnum
