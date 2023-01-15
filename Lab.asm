@@ -192,38 +192,38 @@ section .text                               ;Main code
 
 
 
-        input:
-            mov rax, 0
-            mov rdi, 0
-            mov rsi, temp_var_i
-            mov rdx, temp_var_len_i
-            syscall
-            mov r8, temp_var_i
-            mov r9, 0
-            inputcount:
-                cmp byte[r8], 0x0A
-                je inputcountleave
-                inc r8
-                inc r9
-                jmp inputcount
-            inputcountleave:
-            sub r8, r9
-            PUSH r8
-            PUSH r9
-            mov r8, 10
-            PUSH r8
-            PUSH r9
-            call pow
-            POP r9
-            POP r13
-            POP r8
-            mov r10, 10
-            mov r11, 0
-            mov r12, 0
-            mov r14, 1
-            mov r15, 48
-            inc r13
-            inputint:
+        input:                              ;Number input function
+            mov rax, 0                      ;Wait for input into temp_var
+            mov rdi, 0                      ;           |
+            mov rsi, temp_var_i             ;           |
+            mov rdx, temp_var_len_i         ;           |
+            syscall                         ;End wait for input
+            mov r8, temp_var_i              ;Move input to r8
+            mov r9, 0                       ;Make r9 zero - counter variable
+            inputcount:                     ;Function to count digits in input - different than integer counting
+                cmp byte[r8], 0x0A          ;Compare the first byte of input (first letter) with the newline character
+                je inputcountleave          ;If it is the newline character, jump to inputcountleave
+                inc r8                      ;Increment r8 - in this case, it's incrementing the location in  memory, to read the next byte (letter)
+                inc r9                      ;Increment counter variable
+                jmp inputcount              ;Repeat
+            inputcountleave:                ;Function to exit loop
+            sub r8, r9                      ;Subtract length of input from input adress to return to start of input
+            PUSH r8                         ;Save r8 to stack
+            PUSH r9                         ;Save r9 to stack
+            mov r8, 10                      ;Make r8 10
+            PUSH r8                         ;Push r8 to stack
+            PUSH r9                         ;Push r9 to stack
+            call pow                        ;Get 10^length of input
+            POP r9                          ;Save 10^length to r9
+            POP r13                         ;Save length of input to r13
+            POP r8                          ;Save input to r8
+            mov r10, 10                     ;Make r10 10
+            mov r11, 0                      ;Make r11 0 - total variable
+            mov r12, 0                      ;Make r12 0 - temporary variable
+            mov r14, 1                      ;Make r14 1 - counter variable
+            mov r15, 48                     ;Make r15 48 - for converting ASCII to integer
+            inc r13                         ;Make r13 one larger
+            inputint:                       ;Function to convert ASCII to integer
                 movzx r12, byte[r8]
                 sub r12, r15
                 imul r12, r9
