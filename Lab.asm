@@ -70,7 +70,7 @@ section .text                               ;Main code
             div r8                          ;Dividing number to count digits of by 10
             inc r9                          ;Incrementing r9 (number of digits counter variable)
             cmp rax, 0                      ;Comparing division result with 0
-            jnz cdigitswork                 ;If rax is 0, exit loopive function, else, loop.
+            jnz cdigitswork                 ;If rax is 0, exit looping function, else, loop.
         PUSH r9                             ;Push result number to stack
         PUSH rbx                            ;Push return adress to stack
         ret                                 ;Return to location the function was called from
@@ -81,14 +81,14 @@ section .text                               ;Main code
         POP r10                             ;Save base to r10
         mov r11, r10                        ;Make r11 equal to r10
         mov rax, r9                         ;Make rax equal r9 for comparison below
-        dec r9                              ;Make r9 one smaller for compatibility with loopive function
-        jnz powwork                         ;If number isn't zero, go to loopive function
+        dec r9                              ;Make r9 one smaller for compatibility with looping function
+        jnz powwork                         ;If number isn't zero, go to looping function
         jmp powfi                           ;Jump to exit of function if number is zero
-        powwork:                            ;Loopive function
+        powwork:                            ;Looping function
             imul r10, r11                   ;Multiply base by copy of itself
             dec r9                          ;Decrement loop counter
             mov rax, r9                     ;Make rax equal r9 for comparison below
-            jnz powwork                     ;If negative, exit loopive function, else, loop
+            jnz powwork                     ;If negative, exit looping function, else, loop
         powfi:                              ;Jump here when done with function, to avoid running powwork
         xor rdx, rdx                        ;Make rdx zero
         mov rax, r10                        ;Make rax equal to result
@@ -151,6 +151,44 @@ section .text                               ;Main code
         ret                                 ;Return to location the function was called from
 
 
+    gcd:
+        POP rax
+        POP r8
+        POP r9
+        PUSH rax
+        mov rax, 1                          ;Print gcd message
+        mov rdi, 1                          ;           |
+        mov rsi, factors_msg_2              ;           |
+        mov rdx, factors_msg_2_len          ;           |
+        syscall                             ;End print gcd message
+        mov r10, 1
+        mov r11, 0
+        mov r12, r9
+        cmp r8, r9
+        cmovg r12, r8
+        gcdwork:
+            xor rdx, rdx
+            mov rax, r8
+            div r10
+            mov rax, rdx
+            jnz gcdworkr
+            xor rdx, rdx
+            mov rax, r9
+            div r10
+            mov rax, rdx
+            jnz gcdworkr
+            mov r11, r10
+            gcdworkr:
+            cmp r10, r12
+            jg gcdfi
+            inc r10
+            jmp gcdwork
+        gcdfi:
+        POP r11
+        call pnum
+        ret
+
+
     _start:                                 ;Linker instruction, code starts execution here
         mov rax, 50                         ;Save 24 to rax
         PUSH rax                            ;Push rax onto stack, for factoring
@@ -178,3 +216,5 @@ factors_comma: db ', '
 factors_comma_len: equ $-factors_comma
 factors_period: db '.', 0x0A
 factors_period_len: equ $-factors_period
+gcd_msg: db 'The GCD is', 0x3A, ' '
+gcd_msg_len: equ $-gcd_msg
