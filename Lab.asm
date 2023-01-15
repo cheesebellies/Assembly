@@ -207,9 +207,9 @@ section .text                               ;Main code
             dec rbx
             mov r8, rbx
             xor rbx, rbx
-            mov r9, 0
+            mov r9, 5
             inputgnums:
-
+            mov [temp_var], r9
             PUSH r9
             call pnum
             ret
