@@ -209,7 +209,7 @@ section .text                               ;Main code
             xor rbx, rbx
             mov r9, 5
             inputgnums:
-            mov [temp_var], r9
+            mov [temp_var], [temp_var_reset]
             PUSH r9
             call pnum
             ret
@@ -236,6 +236,7 @@ section .text                               ;Main code
 section .data                               ;Data for use in program
 
 temp_var: times 64 db 0                    ;Save number printing variable with a buffer
+temp_var_reset: times 64 db 0                    ;Save number printing variable with a buffer
 temp_var_len: equ $-temp_var                ;Save the length of temp_var
 factors_msg_1: db 0x0A, 'The factors of '
 factors_msg_1_len: equ $-factors_msg_1
