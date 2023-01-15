@@ -171,10 +171,10 @@ section .text                               ;Main code
             mov rax, r8
             div r10
             mov rax, rdx
-            jnz gcdworkr
             mov eax, 60
         mov rdi, r8
         syscall
+            jnz gcdworkr
             xor rdx, rdx
             mov rax, r9
             div r10
