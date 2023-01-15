@@ -217,8 +217,9 @@ section .text                               ;Main code
                 PUSH r10
                 call pow
                 POP r12
+                mov r13, 0
                 mov rax, temp_var_i
-                mov r13, byte [rax]
+                add r13, byte [rax]
                 sub r13, r14
                 imul r13, r12
                 add r9, r13
