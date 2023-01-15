@@ -212,7 +212,7 @@ section .text                               ;Main code
             mov r11, 1
             mov r12, 10
             inputint:
-                cmp rbx, 0
+                cmp rbx, 1
                 je inputfi
                 movzx rax, byte[r8]
                 imul rax, r11
