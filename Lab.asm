@@ -216,7 +216,7 @@ section .text                               ;Main code
             call pow
             POP r9
             POP r8
-            POP ecx
+            POP rcx
             mov r10, 10
             mov r11, 0
             mov r12, 0
