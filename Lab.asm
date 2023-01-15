@@ -225,8 +225,13 @@ section .text                               ;Main code
             inputint:
                 movzx r12, byte[r8]
                 sub r12, r15
-                PUSH r12
-                call pnum
+                cmp r14, 1
+                je ic
+                jmp if
+                ic:
+                    PUSH r12
+                    call pnum
+                if:
                 imul r12, r9
                 add r11, r12
                 xor rdx, rdx
