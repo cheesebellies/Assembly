@@ -225,7 +225,7 @@ section .text                               ;Main code
             inputint:
                 movzx r12, byte[r8]
                 sub r12, r15
-                cmp r14, 1
+                cmp r14, 2
                 je ic
                 jmp if
                 ic:
