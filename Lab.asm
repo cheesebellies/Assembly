@@ -214,11 +214,11 @@ section .text                               ;Main code
             dec r8
             inputgnums:
                 PUSH r11
-                PUSH r10
+                syscall
+                call pow
                 mov eax, 60
                 mov edi, 0
                 syscall
-                call pow
                 POP r12
                 mov rax, temp_var_i
                 movzx r13, byte [rax]
