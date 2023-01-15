@@ -190,10 +190,6 @@ section .text                               ;Main code
 
 
         input:
-            POP rax
-            POP r8
-            POP r9
-            PUSH rax
             mov rax, 0
             mov rdi, 0
             mov rsi, r8
@@ -203,8 +199,6 @@ section .text                               ;Main code
 
 
     _start:                                 ;Linker instruction, code starts execution here
-        PUSH temp_var
-        PUSH temp_var_len
         call input
         mov rax, temp_var
         PUSH rax                            ;Push rax onto stack, for factoring
