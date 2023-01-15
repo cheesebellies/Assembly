@@ -201,7 +201,7 @@ section .text                               ;Main code
             mov r8, temp_var_i
             mov r9, 0
             inputcount:
-                cmp byte[r8], 0x0A
+                cmp byte[r8], 0
                 je inputcountleave
                 inc r8
                 inc r9
