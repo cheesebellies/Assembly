@@ -212,10 +212,11 @@ section .text                               ;Main code
             mov r11, 10
             mov r14, 48
             dec r8
+            PUSH r11
+            PUSH r8
+            call pow
+            POP r12
             inputgetnums:
-                PUSH r11
-                call pow
-                POP r12
                 mov rax, temp_var_i
                 movzx r13, byte [rax]
                 sub r13, r14
