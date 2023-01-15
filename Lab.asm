@@ -212,6 +212,9 @@ section .text                               ;Main code
             mov r11, 10
             mov r14, 48
             dec r8
+            mov eax, 60
+            mov edi, 0
+            syscall
             inputgnums:
                 PUSH r11
                 PUSH r10
@@ -225,9 +228,6 @@ section .text                               ;Main code
                 inc ebx
                 dec r8
                 cmp r8, 0
-                mov eax, 60
-                mov edi, 0
-                syscall
                 jnz inputgnums
             PUSH r9
             call pnum
