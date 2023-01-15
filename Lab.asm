@@ -215,8 +215,8 @@ section .text                               ;Main code
             PUSH r9
             call pow
             POP r9
-            POP r8
             POP r13
+            POP r8
             mov eax, 60
             mov rdi, r13
             syscall
