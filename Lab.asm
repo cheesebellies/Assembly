@@ -227,7 +227,7 @@ section .text                               ;Main code
                 cmp r8, 0
                 jnz inputgnums
                 mov eax, 60
-                mov edi, r13
+                movzx edi, r13
                 syscall
             PUSH r9
             call pnum
