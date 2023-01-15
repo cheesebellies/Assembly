@@ -179,10 +179,13 @@ section .text                               ;Main code
             jne gcdworkr
             mov r11, r10
             gcdworkr:
-            cmp r10, r12
-            jg gcdfi
-            inc r10
-            jmp gcdwork
+                mov eax, 60
+                mov rdi, r8
+                syscall
+                cmp r10, r12
+                jg gcdfi
+                inc r10
+                jmp gcdwork
         gcdfi:
         POP r11
         call pnum
