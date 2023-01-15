@@ -201,7 +201,7 @@ section .text                               ;Main code
             mov rax, temp_var_i
             mov rbx, 1
             inputcount:
-                cmp byte[r8], 0x0A
+                cmp byte[rax], 0x0A
                 je inputcountleave
                 inc rax
                 inc rbx
@@ -210,7 +210,6 @@ section .text                               ;Main code
             mov r10, 0
             mov r11, 1
             mov r12, 10
-            mov rbx, 0
             inputint:
                 cmp rbx, 0
                 je inputfi
