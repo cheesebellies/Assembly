@@ -199,7 +199,7 @@ section .text                               ;Main code
             mov rdx, temp_var_len_i
             syscall
             mov rax, temp_var_i
-            mov rbx, 1
+            mov rbx, 0
             inputcount:
                 cmp byte[rax], 0x0A
                 je inputcountleave
@@ -207,8 +207,7 @@ section .text                               ;Main code
                 inc rbx
                 jmp inputcount
             inputcountleave:
-            mov r8, 13
-            PUSH r8
+            PUSH rbx
             call pnum
             mov r10, 0
             mov r11, 1
