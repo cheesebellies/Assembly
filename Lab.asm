@@ -207,6 +207,8 @@ section .text                               ;Main code
                 inc rbx
                 jmp inputcount
             inputcountleave:
+            PUSH rbx
+            call pnum
             mov r10, 0
             mov r11, 1
             mov r12, 10
