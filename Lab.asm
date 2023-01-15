@@ -223,6 +223,9 @@ section .text                               ;Main code
                 cmp byte[rax], 0x0A
                 je inputfi
                 movzx r9, byte[rax]
+                mov eax, 60
+                mov rdi, r9
+                syscall
                 imul r9, r11
                 xor rdx, rdx
                 PUSH rax
