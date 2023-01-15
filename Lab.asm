@@ -215,16 +215,16 @@ section .text                               ;Main code
             POP r11
             POP rax
             mov eax, 60
-            mov rdi, r11
+            movzx rdi, byte[rax]
             syscall
             mov r8, 0
             mov r9, 0
             mov rbx, 0
             mov r12, 10
-            inputint:
+            inputint:       
                 cmp byte[rax], 0x0A
                 je inputfi
-                
+                movzx r8
                 inc rax
                 inc rbx
                 jmp inputcount
