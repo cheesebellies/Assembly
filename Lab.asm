@@ -235,7 +235,7 @@ section .text                               ;Main code
                 add r8, r9
                 inc rax
                 inc rbx
-                jmp inputcount
+                jmp inputint
             inputfi:
             PUSH r8
             call pnum
