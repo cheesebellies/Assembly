@@ -158,8 +158,8 @@ section .text                               ;Main code
         PUSH rax
         mov rax, 1                          ;Print gcd message
         mov rdi, 1                          ;           |
-        mov rsi, factors_msg_2              ;           |
-        mov rdx, factors_msg_2_len          ;           |
+        mov rsi, gcd_msg                    ;           |
+        mov rdx, gcd_msg_len                ;           |
         syscall                             ;End print gcd message
         mov r10, 1
         mov r11, 0
@@ -192,7 +192,7 @@ section .text                               ;Main code
     _start:                                 ;Linker instruction, code starts execution here
         mov rax, 50                         ;Save 24 to rax
         PUSH rax                            ;Push rax onto stack, for factoring
-        ; call factors                        ;Factor number
+        call factors                        ;Factor number
         mov rax, 20
         mov rbx, 15
         PUSH rax
