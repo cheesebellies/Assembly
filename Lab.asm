@@ -216,7 +216,7 @@ section .text                               ;Main code
             POP r9
             mov rbx, 0
             mov eax, 60
-            mov edi, byte[r9]
+            movzx rdi, byte[r9]
             syscall
             ret
 
