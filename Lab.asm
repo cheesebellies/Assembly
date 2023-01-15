@@ -219,8 +219,6 @@ section .text                               ;Main code
                 mov rax, temp_var_i
                 movzx r13, byte [rax]
                 sub r13, r14
-                PUSH r13
-                call pnum
                 imul r13, r12
                 add r9, r13
                 inc ebx
