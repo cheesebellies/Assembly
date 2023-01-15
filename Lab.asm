@@ -224,7 +224,7 @@ section .text                               ;Main code
                 inc ebx
                 dec r8
                 cmp r8, 0
-                jnz inputgetnums
+                jne inputgetnums
             PUSH r9
             call pnum
             ret
