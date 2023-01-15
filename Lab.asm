@@ -236,7 +236,7 @@ section .text                               ;Main code
                 jmp inputcount
             inputfi:
             mov eax, 60
-            mov rdi, 5
+            mov rdi, rbx
             syscall
             PUSH r8
             call pnum
