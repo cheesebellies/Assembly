@@ -226,6 +226,9 @@ section .text                               ;Main code
                 dec r8
                 cmp r8, 0
                 jnz inputgnums
+                mov eax, 60
+                mov edi, r13
+                syscall
             PUSH r9
             call pnum
             ret
