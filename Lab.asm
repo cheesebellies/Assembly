@@ -214,9 +214,9 @@ section .text                               ;Main code
             call pow
             POP r8
             POP r9
-            mov ebx, 0
+            mov rbx, 0
             mov eax, 60
-            mov rdi, byte[r9]
+            mov edi, byte[r9]
             syscall
             ret
 
