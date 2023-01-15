@@ -225,7 +225,7 @@ section .text                               ;Main code
                 dec r8
                 mov rax, r8
                 cmp rax, 0
-                jnz inputgetnums
+                jne inputgetnums
             PUSH r9
             call pnum
             ret
