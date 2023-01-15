@@ -210,7 +210,7 @@ section .text                               ;Main code
             mov [temp_var], rbx
             mov rax, 1
             mov rdi, 1
-            mov rsi, temp_var_len
+            mov rsi, temp_var
             mov rdx, temp_var_len
             syscall
             PUSH r8
