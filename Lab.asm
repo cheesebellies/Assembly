@@ -190,17 +190,21 @@ section .text                               ;Main code
 
 
         input:
+            POP r8
             mov rax, 0
             mov rdi, 0
             mov rsi, temp_var
             mov rdx, temp_var_len
             syscall
+            mov r9, [temp_var]
+            PUSH r9
+            PUSH r8
             ret
 
 
     _start:                                 ;Linker instruction, code starts execution here
         call input
-        mov rax, temp_var
+        POP rax
         PUSH rax                            ;Push rax onto stack, for factoring
         call factors                        ;Factor number
         mov rax, 20
