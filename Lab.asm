@@ -198,12 +198,14 @@ section .text                               ;Main code
             mov rdi, 0
             mov rsi, r8
             mov rsi, r9
-            
+            syscall
 
 
     _start:                                 ;Linker instruction, code starts execution here
-
-        mov rax, 50                         ;Save 24 to rax
+        PUSH temp_var
+        PUSH temp_var_len
+        call input
+        mov rax, temp_var
         PUSH rax                            ;Push rax onto stack, for factoring
         call factors                        ;Factor number
         mov rax, 20
