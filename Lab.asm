@@ -209,10 +209,22 @@ section .text                               ;Main code
                 je inputcountleave
                 movzx r10, byte[rax]
                 sub r10, r9
+                PUSH r8
+                PUSH r9
+                PUSH r10
+                PUSH r11
+                PUSH r12
+                PUSH rax
                 PUSH r11
                 PUSH r12
                 call pow
                 POP r13
+                POP rax
+                POP r12
+                POP r11
+                POP r10
+                POP r9
+                POP r8
                 imul r10, r13
                 add r8, r10
                 inc rax
