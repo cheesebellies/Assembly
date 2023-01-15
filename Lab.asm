@@ -196,7 +196,7 @@ section .text                               ;Main code
             mov rsi, temp_var
             mov rdx, temp_var_len
             syscall
-            mov r9, [temp_var]
+            mov r9, temp_var
             PUSH r9
             PUSH r8
             ret
