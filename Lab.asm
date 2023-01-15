@@ -213,8 +213,6 @@ section .text                               ;Main code
             inputint:
                 cmp byte[r8], 0x0A
                 je inputfi
-                inc r8
-                inc r9
                 PUSH r8
                 PUSH r9
                 PUSH r10
@@ -232,6 +230,8 @@ section .text                               ;Main code
                 sub r13, r14
                 imul r13, r12
                 add r11, r13
+                inc r8
+                inc r9
                 jmp inputint
             inputfi:
             PUSH r8
