@@ -412,17 +412,16 @@ section .text                               ;Main code
             menufinddigit:
                 mov rax, 1
                 mov rdi, 1
-                mov rsi, menu_input_msg_finddigit
-                mov rdx, menu_input_msg_finddigit_len
-                syscall
-                call input
-                mov rax, 1
-                mov rdi, 1
                 mov rsi, menu_input_msg_finddigit_2
                 mov rdx, menu_input_msg_finddigit_len_2
                 syscall
                 call input
                 call finddigit
+                mov rax, 1
+                mov rdi, 1
+                mov rsi, dnewline
+                mov rdx, dnewlinelen
+                syscall
                 jmp menu
             menufinddigitfi:
 
