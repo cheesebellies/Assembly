@@ -234,6 +234,7 @@ section .text                               ;Main code
             POP rax
             POP r9
             POP r8
+            PUSH rax
             inc r9
             PUSH r8
             PUSH r9
