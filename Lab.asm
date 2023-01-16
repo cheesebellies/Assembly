@@ -283,8 +283,8 @@ section .text                               ;Main code
                 syscall
                 call input
                 call gcd
-                mov rax, 0
-                mov rdi, 0
+                mov rax, 1
+                mov rdi, 1
                 mov rsi, dnewline
                 mov rdx, dnewlinelen
                 syscall
@@ -317,9 +317,9 @@ section .text                               ;Main code
 
 section .data                               ;Data for use in program
 
-newline: db '', 0x0A
+newline: db 0x0A
 newlinelen: equ $-newline
-dnewline: db ' ', 0x0A, 0x0A
+dnewline: db 0x0A, 0x0A
 dnewlinelen: equ $-dnewline
 temp_var: times 64 db 0                     ;Save number printing variable with a buffer
 temp_var_len: equ $-temp_var                ;Save the length of temp_var
