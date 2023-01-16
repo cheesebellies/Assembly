@@ -358,6 +358,25 @@ section .text                               ;Main code
                 call prime
                 jmp menu
             menuprimefi:
+        cmp rax, 4
+            je menupower
+            jmp menupowerfi
+            menupower:
+                mov rax, 1
+                mov rdi, 1
+                mov rsi, menu_input_msg_pow
+                mov rdx, menu_input_msg_pow_len
+                syscall
+                call input
+                mov rax, 1
+                mov rdi, 1
+                mov rsi, menu_input_msg_pow_2
+                mov rdx, menu_input_msg_pow_len_2
+                syscall
+                call input
+                call power
+                jmp menu
+            menupowerfi:
         jmp menu
         menuexit:
         ret
@@ -424,6 +443,6 @@ menu_input_msg_len_2: equ $-menu_input_msg_2
 quit_msg: db 'Thank you for using my program.', 0x0A
 quit_msg_len: equ $-quit_msg
 menu_input_msg_pow: db 'Input a number for the base ', 0x28, 'int', 0x29, 0x3A, ' '
-menu_input_msg__pow_len: equ $-menu_input_msg_pow
+menu_input_msg_pow_len: equ $-menu_input_msg_pow
 menu_input_msg_pow_2: db 'Input a number for the exponent ', 0x28, 'int', 0x29, 0x3A, ' '
 menu_input_msg_pow_len_2: equ $-menu_input_msg_pow_2
