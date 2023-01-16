@@ -266,6 +266,30 @@ section .text                               ;Main code
                 call factors
                 jmp menu
             menufactorsfi:
+        cmp rax, 2
+            je menufactors
+            jmp menufactorsfi
+            menufactors:
+                mov rax, 1
+                mov rdi, 1
+                mov rsi, menu_input_msg
+                mov rdx, menu_input_msg_len
+                syscall
+                call input
+                mov rax, 0
+                mov rdi, 0
+                mov rsi, newline
+                mov rdx, 1
+                syscall
+                mov rax, 1
+                mov rdi, 1
+                mov rsi, menu_input_msg_2
+                mov rdx, menu_input_msg_len_2
+                syscall
+                call input
+                call gcd
+                jmp menu
+            menufactorsfi:
         jmp menu
         menuexit:
         ret
