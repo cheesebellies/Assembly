@@ -243,11 +243,16 @@ section .text                               ;Main code
             ret                             ;Return to where the function was called
 
 
-
+    menu:
 
 
 
     _start:                                 ;Linker instruction, code starts execution here
+        mov rax, 1
+        mov rsi, 1
+        mov rdi, menu_msg
+        mov rdx, menu_msg_len
+        syscall
         call input
         call pnum
         mov rax, 176
@@ -282,3 +287,5 @@ factors_period: db '.'
 factors_period_len: equ $-factors_period
 gcd_msg: db 'The GCD is', 0x3A, ' '
 gcd_msg_len: equ $-gcd_msg
+menu_msg: 'Please Choose a method', 0x3A, '1. Factors', 0x0A,' 2. GCD', 0x0A '3. Prime', 0x0A '4. Power', 0x0A '5. Find Digit', 0x0A '6. Down Digits, ', 0x0A '7. Count Digits, ', 0x0A '0. Quit'
+menu_msg_len: equ $-gcd_msg
