@@ -244,25 +244,49 @@ section .text                               ;Main code
 
 
     menu:
-
-
-
-    _start:                                 ;Linker instruction, code starts execution here
         mov rax, 1
         mov rdi, 1
         mov rsi, menu_msg
         mov rdx, menu_msg_len
         syscall
         call input
-        call pnum
-        mov rax, 176
-        PUSH rax                            ;Push rax onto stack, for factoring
-        call factors                        ;Factor number
-        mov rax, 20
-        mov rbx, 15
-        PUSH rax
+        POP rax
+        jz menuexit
+        cmp rax, 1
+        mov rbx, 24
         PUSH rbx
-        call gcd
+        je factor
+        cmp rax, 2
+        mov rbx, 24
+        PUSH rbx
+        je gcd
+        ; cmp rax, 3
+        ; je 
+        ; cmp rax, 4
+        ; je 
+        ; cmp rax, 5
+        ; je 
+        ; cmp rax, 6
+        ; je 
+        ; cmp rax, 7
+        ; je 
+        jmp menu
+        menuexit:
+        ret
+
+
+    _start:                                 ;Linker instruction, code starts execution here
+        call menu
+        ; call input
+        ; call pnum
+        ; mov rax, 176
+        ; PUSH rax                            ;Push rax onto stack, for factoring
+        ; call factors                        ;Factor number
+        ; mov rax, 20
+        ; mov rbx, 15
+        ; PUSH rax
+        ; PUSH rbx
+        ; call gcd
 
 
 
