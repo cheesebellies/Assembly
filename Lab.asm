@@ -406,6 +406,26 @@ section .text                               ;Main code
                 call power
                 jmp menu
             menupowerfi:
+        cmp rax, 5
+            je menufinddigit
+            jmp menufinddigitfi
+            menufinddigit:
+                mov rax, 1
+                mov rdi, 1
+                mov rsi, menu_input_msg_pow
+                mov rdx, menu_input_msg_pow_len
+                syscall
+                call input
+                mov rax, 1
+                mov rdi, 1
+                mov rsi, menu_input_msg_finddigit
+                mov rdx, menu_input_msg_finddigit_len
+                syscall
+                call input
+                call finddigit
+                jmp menu
+            menufinddigitfi:
+
         jmp menu
         menuexit:
         ret
@@ -477,5 +497,5 @@ menu_input_msg_pow: db 'Input a number for the base ', 0x28, 'int', 0x29, 0x3A, 
 menu_input_msg_pow_len: equ $-menu_input_msg_pow
 menu_input_msg_pow_2: db 'Input a number for the exponent ', 0x28, 'int', 0x29, 0x3A, ' '
 menu_input_msg_pow_len_2: equ $-menu_input_msg_pow_2
-menu_input_msg_finddigit_2: db 'Input which digit from the right ', 0x28, 'int', 0x29, 0x3A, ' '
-menu_input_msg_finddigit_len_2: equ $-menu_input_msg_finddigit_2
+menu_input_msg_finddigit: db 'Input which digit from the right ', 0x28, 'int', 0x29, 0x3A, ' '
+menu_input_msg_finddigit_len: equ $-menu_input_msg_finddigit
