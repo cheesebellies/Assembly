@@ -233,13 +233,11 @@ section .text                               ;Main code
             PUSH r8
             PUSH r9
             call pow
-            POP r8
             mov rax, 1
             mov rdi, 1
             mov rsi, power_msg
             mov rdx, power_msg_len
             syscall
-            PUSH r8
             call pnum
             mov rax, 1
             mov rdi, 1
