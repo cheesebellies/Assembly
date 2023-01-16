@@ -255,7 +255,7 @@ section .text                               ;Main code
         cmp rax, 1
         mov rbx, 24
         PUSH rbx
-        je factor
+        je factors
         cmp rax, 2
         mov rbx, 24
         PUSH rbx
