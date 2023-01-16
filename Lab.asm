@@ -226,6 +226,11 @@ section .text                               ;Main code
 
 
         power:
+            mov rax, 1
+            mov rdi, 1
+            mov rsi, power_msg
+            mov rdx, power_msg_len
+            syscall
             POP rax
             POP r8
             POP r9
@@ -233,11 +238,6 @@ section .text                               ;Main code
             PUSH r8
             PUSH r9
             call pow
-            mov rax, 1
-            mov rdi, 1
-            mov rsi, power_msg
-            mov rdx, power_msg_len
-            syscall
             call pnum
             mov rax, 1
             mov rdi, 1
