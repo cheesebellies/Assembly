@@ -248,6 +248,26 @@ section .text                               ;Main code
             ret
 
 
+        finddigit:                          ;Finding digit function
+            POP rax                         ;Save return adress to rax
+            POP r10                         ;Find digit number
+            POP r11                         ;Number
+            PUSH rax                        ;Push return adress back onto stack
+            mov r8, r11              ;Move input to r8
+            mov r9, 0                       ;Make r9 zero - counter variable
+            finddigitcount:                 ;Function to count digits in input - different than integer counting
+                cmp byte[r8], 0x0A          ;Compare the first byte of input (first letter) with the newline character
+                je finddigitcountleave      ;If it is the newline character, jump to inputcountleave
+                inc r8                      ;Increment r8 - in this case, it's incrementing the location in  memory, to read the next byte (letter)
+                inc r9                      ;Increment counter variable
+                jmp finddigitcount          ;Repeat
+            finddigitcountleave:            ;Function to exit loop
+                sub r8, r10
+                movzx r8, byte[r8]
+                PUSH r8
+                
+
+
         input:                              ;Number input function
             mov rax, 0                      ;Wait for input into temp_var
             mov rdi, 0                      ;           |
@@ -434,6 +454,8 @@ prime_msg_2: db 'The number is not prime.', 0x0A, 0x0A
 prime_msg_2_len: equ $-prime_msg_2
 power_msg: db 'The value is', 0x3A, ' '
 power_msg_len: equ $-power_msg
+finddigit_msg: db 'The digit is', 0x3A, ' '
+finddigit_msg_len: equ $-finddigit_msg
 
 menu_msg: db 'Please Choose a method', 0x3A, 0x0A, '1. Factors', 0x0A,'2. GCD', 0x0A, '3. Prime', 0x0A, '4. Power', 0x0A, '5. Find Digit', 0x0A, '6. Down Digits, ', 0x0A, '7. Count Digits, ', 0x0A, '0. Quit', 0x0A
 menu_msg_len: equ $-menu_msg
@@ -447,3 +469,5 @@ menu_input_msg_pow: db 'Input a number for the base ', 0x28, 'int', 0x29, 0x3A, 
 menu_input_msg_pow_len: equ $-menu_input_msg_pow
 menu_input_msg_pow_2: db 'Input a number for the exponent ', 0x28, 'int', 0x29, 0x3A, ' '
 menu_input_msg_pow_len_2: equ $-menu_input_msg_pow_2
+menu_input_msg_finddigit_2: db 'Input which digit from the right ', 0x28, 'int', 0x29, 0x3A, ' '
+menu_input_msg_finddigit_len_2: equ $-menu_input_msg_finddigit_2
