@@ -267,9 +267,9 @@ section .text                               ;Main code
                 jmp menu
             menufactorsfi:
         cmp rax, 2
-            je menufactors
-            jmp menufactorsfi
-            menufactors:
+            je menugcd
+            jmp menugcdfi
+            menugcd:
                 mov rax, 1
                 mov rdi, 1
                 mov rsi, menu_input_msg
@@ -289,7 +289,7 @@ section .text                               ;Main code
                 call input
                 call gcd
                 jmp menu
-            menufactorsfi:
+            menugcdfi:
         jmp menu
         menuexit:
         ret
