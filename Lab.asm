@@ -208,6 +208,7 @@ section .text                               ;Main code
                 cmp rdx, 0
                 je primeno
                 inc r9
+                jmp primeworker
             primeyes:
                 mov rax, 1
                 mov rdi, 1
@@ -323,6 +324,19 @@ section .text                               ;Main code
                 syscall
                 jmp menu
             menugcdfi:
+        cmp rax, 3
+            je menuprime
+            jmp menuprimefi
+            menuprime:
+                mov rax, 1
+                mov rdi, 1
+                mov rsi, menu_input_msg
+                mov rdx, menu_input_msg_len
+                syscall
+                call input
+                call prime
+                jmp menu
+            menuprimefi:
         jmp menu
         menuexit:
         ret
