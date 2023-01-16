@@ -264,7 +264,15 @@ section .text                               ;Main code
             finddigitcountleave:            ;Function to exit loop
                 sub r8, r10
                 movzx r8, byte[r8]
+                mov r9, 48
+                sub r8, r9
+                mov rax, 1
+                mov rdi, 1
+                mov rsi, finddigit_msg
+                mov rdx, finddigit_msg_len
+                syscall
                 PUSH r8
+                call pnum
                 
 
 
