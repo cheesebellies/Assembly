@@ -249,8 +249,8 @@ section .text                               ;Main code
 
     _start:                                 ;Linker instruction, code starts execution here
         mov rax, 1
-        mov rsi, 1
-        mov rdi, menu_msg
+        mov rdi, 1
+        mov rsi, menu_msg
         mov rdx, menu_msg_len
         syscall
         call input
