@@ -190,6 +190,39 @@ section .text                               ;Main code
 
 
 
+        prime:
+            POP rax
+            POP r8
+            PUSH rax
+            mov r9, 2
+            mov rax, r8
+            mov rbx, 1
+            sub rax, rbx
+            mov r10, rax
+            primeworker:
+                cmp r9, r10
+                je primeyes
+                xor rdx, rdx
+                mov rax, r8
+                div r9
+                cmp rdx, 0
+                je primeno
+                inc r9
+            primeyes:
+                mov rax, 1
+                mov rdi, 1
+                mov rsi, prime_msg_1
+                mov rdx, prime_msg_1_len
+                syscall
+                ret
+            primeno:
+                mov rax, 1
+                mov rdi, 1
+                mov rsi, prime_msg_2
+                mov rdx, prime_msg_2_len
+                syscall
+                ret
+
 
 
         input:                              ;Number input function
@@ -335,6 +368,10 @@ factors_period: db '.', 0x0A, 0x0A
 factors_period_len: equ $-factors_period
 gcd_msg: db 'The GCD is', 0x3A, ' '
 gcd_msg_len: equ $-gcd_msg
+prime_msg_1: db 'The number is prime.', 0x0A, 0x0A
+prime_msg_1_len: equ $-prime_msg_1
+prime_msg_2: db 'The number is not prime.', 0x0A, 0x0A
+prime_msg_2_len: equ $-prime_msg_2
 
 menu_msg: db 'Please Choose a method', 0x3A, 0x0A, '1. Factors', 0x0A,'2. GCD', 0x0A, '3. Prime', 0x0A, '4. Power', 0x0A, '5. Find Digit', 0x0A, '6. Down Digits, ', 0x0A, '7. Count Digits, ', 0x0A, '0. Quit', 0x0A
 menu_msg_len: equ $-gcd_msg - 12
@@ -342,3 +379,5 @@ menu_input_msg: db 'Input a number ', 0x28, 'int', 0x29, 0x3A, ' '
 menu_input_msg_len: equ $-menu_input_msg
 menu_input_msg_2: db 'Input another number ', 0x28, 'int', 0x29, 0x3A, ' '
 menu_input_msg_len_2: equ $-menu_input_msg_2
+quit_msg: db 'Thank you for using my program.'
+quit_msg_len: equ $-quit_msg
