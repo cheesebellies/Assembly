@@ -225,6 +225,27 @@ section .text                               ;Main code
                 ret
 
 
+        power:
+            POP rax
+            POP r8
+            POP r9
+            PUSH rax
+            PUSH r8
+            PUSH r9
+            call pow
+            POP r8
+            mov rax, 1
+            mov rdi, 1
+            mov rsi, power_msg
+            mov rdx, power_msg_len
+            syscall
+            mov rax, 1
+            mov rdi, 1
+            mov rsi, factors_period
+            mov rdx, factors_period_len
+            syscall
+            ret
+
 
         input:                              ;Number input function
             mov rax, 0                      ;Wait for input into temp_var
@@ -391,6 +412,8 @@ prime_msg_1: db 'The number is prime.', 0x0A, 0x0A
 prime_msg_1_len: equ $-prime_msg_1
 prime_msg_2: db 'The number is not prime.', 0x0A, 0x0A
 prime_msg_2_len: equ $-prime_msg_2
+power_msg: db 'The value is', 0x3A, ' '
+power_msg_len: equ $-power_msg
 
 menu_msg: db 'Please Choose a method', 0x3A, 0x0A, '1. Factors', 0x0A,'2. GCD', 0x0A, '3. Prime', 0x0A, '4. Power', 0x0A, '5. Find Digit', 0x0A, '6. Down Digits, ', 0x0A, '7. Count Digits, ', 0x0A, '0. Quit', 0x0A
 menu_msg_len: equ $-menu_msg
