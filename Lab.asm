@@ -252,24 +252,6 @@ section .text                               ;Main code
         call input
         POP rax
         jz menuexit
-        cmp rax, 1
-        mov rbx, 24
-        PUSH rbx
-        je factors
-        cmp rax, 2
-        mov rbx, 24
-        PUSH rbx
-        je gcd
-        ; cmp rax, 3
-        ; je 
-        ; cmp rax, 4
-        ; je 
-        ; cmp rax, 5
-        ; je 
-        ; cmp rax, 6
-        ; je 
-        ; cmp rax, 7
-        ; je 
         jmp menu
         menuexit:
         ret
