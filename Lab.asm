@@ -231,8 +231,9 @@ section .text                               ;Main code
             mov rsi, power_msg
             mov rdx, power_msg_len
             syscall
-            mov r8, 2
-            mov r9, 3
+            POP rax
+            POP r9
+            POP r8
             inc r9
             PUSH r8
             PUSH r9
