@@ -260,7 +260,7 @@ section .text                               ;Main code
                 mov rax, 1
                 mov rdi, 1
                 mov rsi, menu_factors_msg
-                mov rdx, 22
+                mov rdx, 0xFF
                 syscall
                 call input
                 call factors
