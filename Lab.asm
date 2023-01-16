@@ -280,6 +280,7 @@ section .text                               ;Main code
 
 section .data                               ;Data for use in program
 
+newline: db 0x0A                            ;No length, use 1 
 temp_var: times 64 db 0                     ;Save number printing variable with a buffer
 temp_var_len: equ $-temp_var                ;Save the length of temp_var
 temp_var_i: times 64 db 0                   ;Save number input variable with a buffer
