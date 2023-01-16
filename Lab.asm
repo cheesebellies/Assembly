@@ -233,6 +233,7 @@ section .text                               ;Main code
             syscall
             mov r8, 2
             mov r9, 3
+            inc r9
             PUSH r8
             PUSH r9
             call pow
