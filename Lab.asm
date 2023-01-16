@@ -344,6 +344,11 @@ section .text                               ;Main code
 
     _start:                                 ;Linker instruction, code starts execution here
         call menu
+        mov rax, 1
+        mov rdi, 1
+        mov rsi, quit_msg
+        mov rdx, quit_msg_len
+        syscall
         ; call input
         ; call pnum
         ; mov rax, 176
