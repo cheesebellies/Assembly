@@ -262,11 +262,6 @@ section .text                               ;Main code
                 mov rsi, menu_factors_msg
                 mov rdx, menu_factors_msg_len
                 syscall
-                mov rax, 1
-                mov rdi, 1
-                mov rsi, newline
-                mov rdx, 1
-                syscall
                 call input
                 call factors
                 jmp menu
