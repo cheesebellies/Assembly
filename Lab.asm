@@ -304,7 +304,7 @@ factors_msg_2: db ' are', 0x3A, ' '
 factors_msg_2_len: equ $-factors_msg_2
 factors_comma: db ', '
 factors_comma_len: equ $-factors_comma
-factors_period: db '.'
+factors_period: db '.', 0x0A, 0x0A
 factors_period_len: equ $-factors_period
 gcd_msg: db 'The GCD is', 0x3A, ' '
 gcd_msg_len: equ $-gcd_msg
