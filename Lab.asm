@@ -248,31 +248,31 @@ section .text                               ;Main code
             ret
 
 
-        finddigit:                          ;Finding digit function
-            POP rax                         ;Save return adress to rax
-            POP r10                         ;Find digit number
-            POP r11                         ;Number
-            PUSH rax                        ;Push return adress back onto stack
-            mov r8, r11              ;Move input to r8
-            mov r9, 0                       ;Make r9 zero - counter variable
-            finddigitcount:                 ;Function to count digits in input - different than integer counting
-                cmp byte[r8], 0x0A          ;Compare the first byte of input (first letter) with the newline character
-                je finddigitcountleave      ;If it is the newline character, jump to inputcountleave
-                inc r8                      ;Increment r8 - in this case, it's incrementing the location in  memory, to read the next byte (letter)
-                inc r9                      ;Increment counter variable
-                jmp finddigitcount          ;Repeat
-            finddigitcountleave:            ;Function to exit loop
-                sub r8, r10
-                movzx r8, byte[r8]
-                mov r9, 48
-                sub r8, r9
-                mov rax, 1
-                mov rdi, 1
-                mov rsi, finddigit_msg
-                mov rdx, finddigit_msg_len
-                syscall
-                PUSH r8
-                call pnum
+        finddigit:
+            POP rax
+            POP r8
+            POP r9
+            PUSH rax
+            mov r10, 2
+            mov r11, 10
+            sub r8, r10
+            PUSH r9
+            PUSH r11
+            PUSH r11
+            PUSH r8
+            call pow
+            POP r8
+            POP r10
+            POP r9
+            mov rax, r9
+            xor rdx, rdx
+            div r10
+            xor rdx, rdx
+            div r10
+            PUSH rdx
+            call pnum
+            ret
+
                 
 
 
