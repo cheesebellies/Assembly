@@ -276,11 +276,11 @@ section .text                               ;Main code
                 mov rdx, menu_input_msg_len
                 syscall
                 call input
-                mov rax, 0
-                mov rdi, 0
-                mov rsi, newline
-                mov rdx, newlinelen
-                syscall
+                ; mov rax, 0
+                ; mov rdi, 0
+                ; mov rsi, newline
+                ; mov rdx, newlinelen
+                ; syscall
                 mov rax, 1
                 mov rdi, 1
                 mov rsi, menu_input_msg_2
