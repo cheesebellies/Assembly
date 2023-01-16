@@ -30,6 +30,7 @@ section .text                               ;Main code
         call cdigits                        ;Counting digits of number
         POP rbx                             ;Saving number of digits to rbx
         mov r8, 10                          ;Saving 10 to r8
+        dec rbx                             ;Make rbx one smaller for compatibility with power function
         PUSH r8                             ;Saving 10 to stack
         PUSH rbx                            ;Saving number of digits to stack
         call pow                            ;Getting 10^number of digits, for use in printing function
@@ -81,7 +82,6 @@ section .text                               ;Main code
         POP r10                             ;Save base to r10
         mov r11, r10                        ;Make r11 equal to r10
         mov rax, r9                         ;Make rax equal r9 for comparison below
-        dec r9                              ;Make r9 one smaller for compatibility with looping function
         jnz powwork                         ;If number isn't zero, go to looping function
         jmp powfi                           ;Jump to exit of function if number is zero
         powwork:                            ;Looping function
@@ -264,6 +264,7 @@ section .text                               ;Main code
             PUSH r8                         ;Save r8 to stack
             PUSH r9                         ;Save r9 to stack
             mov r8, 10                      ;Make r8 10
+            dec r9                          ;Make r9 one smaller for compatibility with power function
             PUSH r8                         ;Push r8 to stack
             PUSH r9                         ;Push r9 to stack
             call pow                        ;Get 10^length of input
