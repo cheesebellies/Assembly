@@ -252,7 +252,7 @@ section .text                               ;Main code
         call input
         POP rax
         cmp rax, 0
-        jz menuexit
+        je menuexit
         jmp menu
         menuexit:
         ret
