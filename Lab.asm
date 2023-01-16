@@ -317,7 +317,7 @@ section .text                               ;Main code
 
 section .data                               ;Data for use in program
 
-newline: db 0x0A
+newline: db '', 0x0A
 newlinelen: equ $-newline
 temp_var: times 64 db 0                     ;Save number printing variable with a buffer
 temp_var_len: equ $-temp_var                ;Save the length of temp_var
