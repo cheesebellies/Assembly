@@ -251,6 +251,7 @@ section .text                               ;Main code
         syscall
         call input
         POP rax
+        cmp rax, 0
         jz menuexit
         jmp menu
         menuexit:
