@@ -254,6 +254,7 @@ section .text                               ;Main code
             POP rax
             POP r8  ;find
             POP r9  ;num
+            inc r8
             PUSH rax
             mov r10, 10
             PUSH r8 
