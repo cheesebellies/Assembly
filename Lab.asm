@@ -278,6 +278,11 @@ section .text                               ;Main code
             mov rax, r9
             div r10
             PUSH rax
+            mov rax, 1
+            mov rdi, 1
+            mov rsi, finddigit_msg
+            mov rdx, finddigit_msg_len
+            syscall
             call pnum
             ret
 
