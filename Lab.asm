@@ -264,7 +264,21 @@ section .text                               ;Main code
             POP r10
             POP r9
             POP r8
-            
+            mov r11, 10
+            xor rdx, rdx
+            mov rax, r9
+            div r10
+            mov r9, rdx
+            xor rdx, rdx
+            mov rax, r10
+            div r11
+            xor rdx, rdx
+            mov r10, rax
+            mov rax, r9
+            div r10
+            PUSH rax
+            call pnum
+            ret
 
 
         downdigits:                                   ;Number printing function
