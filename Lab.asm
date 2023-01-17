@@ -363,7 +363,6 @@ section .text                               ;Main code
                 cmp r14, r13                ;Compare counter variable to length of input
                 jne countdigitscountint     ;If it is equal, exit the loop
             countdigitsfi:                  ;Function to exit the loop
-            POP r8                          ;Save return adress to r8
             PUSH r11                        ;Push total to stack
             call cdigits
             mov rax, 1
@@ -377,7 +376,6 @@ section .text                               ;Main code
             mov rsi, countdigits_msg_2
             mov rdx, countdigits_msg_len_2
             syscall
-            PUSH r8                         ;Push return adress to top of stack
             ret                             ;Return to where the function was called
 
                 
@@ -632,7 +630,7 @@ finddigit_msg: db 'The digit is', 0x3A, ' '
 finddigit_msg_len: equ $-finddigit_msg
 countdigits_msg: db 'There are', 0x3A, ' '
 countdigits_msg_len: equ $-countdigits_msg
-countdigits_msg_2: db 'digit', 0x28, 's', 0x29, '.'
+countdigits_msg_2: db ' digit', 0x28, 's', 0x29, '.'
 countdigits_msg_len_2: equ $-countdigits_msg_2
 
 menu_msg: db 'Please Choose a method', 0x3A, 0x0A, '1. Factors', 0x0A,'2. GCD', 0x0A, '3. Prime', 0x0A, '4. Power', 0x0A, '5. Find Digit', 0x0A, '6. Down Digits, ', 0x0A, '7. Count Digits, ', 0x0A, '0. Quit', 0x0A
