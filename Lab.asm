@@ -316,6 +316,70 @@ section .text                               ;Main code
         PUSH r15                            ;Pushing return address to top of stack
         ret                                 ;Return to location the function was called from
 
+
+
+        countdigits:                        ;Number input function
+            mov rax, 0                      ;Wait for input into temp_var
+            mov rdi, 0                      ;           |
+            mov rsi, temp_var_i             ;           |
+            mov rdx, temp_var_len_i         ;           |
+            syscall                         ;End wait for input
+            mov r8, temp_var_i              ;Move input to r8
+            mov r9, 0                       ;Make r9 zero - counter variable
+            countdigitscount:               ;Function to count digits in input - different than integer counting
+                cmp byte[r8], 0x2E          ;Compare the first byte of input (first letter) with the . character
+                je countdigitscountleave    ;If it is the newline character, jump to inputcountleave
+                inc r8                      ;Increment r8 - in this case, it's incrementing the location in  memory, to read the next byte (letter)
+                inc r9                      ;Increment counter variable
+                jmp countdigitscount        ;Repeat
+            countdigitscountleave:          ;Function to exit loop
+            sub r8, r9                      ;Subtract length of input from input adress to return to start of input
+            PUSH r8                         ;Save r8 to stack
+            PUSH r9                         ;Save r9 to stack
+            mov r8, 10                      ;Make r8 10
+            PUSH r8                         ;Push r8 to stack
+            PUSH r9                         ;Push r9 to stack
+            call pow                        ;Get 10^length of input
+            POP r9                          ;Save 10^length to r9
+            POP r13                         ;Save length of input to r13
+            POP r8                          ;Save input to r8
+            mov r10, 10                     ;Make r10 10
+            mov r11, 0                      ;Make r11 0 - total variable
+            mov r12, 0                      ;Make r12 0 - temporary variable
+            mov r14, 1                      ;Make r14 1 - counter variable
+            mov r15, 48                     ;Make r15 48 - for converting ASCII to integer
+            inc r13                         ;Make r13 one larger
+            countdigitscountint:            ;Function to convert ASCII to integer
+                movzx r12, byte[r8]         ;Make temporary variable equal to first digit of input
+                sub r12, r15                ;Subtract 48 from digit to make it an int
+                imul r12, r9                ;Multiply it by 10^digit place - eg. 123 -> 1*100 + 2*10 + 3*1
+                add r11, r12                ;Add temporary variable to total variable
+                xor rdx, rdx                ;Make rdx zero
+                mov rax, r9                 ;Make rax equal to 10^length var
+                div r10                     ;Divide rax by 10
+                mov r9, rax                 ;Make r9 equal to result
+                inc r8                      ;Increment adress of input
+                inc r14                     ;Input counter variable
+                cmp r14, r13                ;Compare counter variable to length of input
+                jne countdigitscountint     ;If it is equal, exit the loop
+            countdigitsfi:                  ;Function to exit the loop
+            POP r8                          ;Save return adress to r8
+            PUSH r11                        ;Push total to stack
+            call cdigits
+            mov rax, 1
+            mov rdi, 1
+            mov rsi, countdigits_msg
+            mov rdx, countdigits_msg_len
+            syscall
+            call pnum
+            mov rax, 1
+            mov rdi, 1
+            mov rsi, countdigits_msg_2
+            mov rdx, countdigits_msg_len_2
+            syscall
+            PUSH r8                         ;Push return adress to top of stack
+            ret                             ;Return to where the function was called
+
                 
 
 
@@ -491,6 +555,23 @@ section .text                               ;Main code
                 syscall
                 jmp menu
             menudowndigitsfi:
+        cmp rax, 7
+            je menucountdigits
+            jmp menucountdigitsfi
+            menucountdigits:
+                mov rax, 1
+                mov rdi, 1
+                mov rsi, menu_input_countdigits_msg
+                mov rdx, menu_input_msg_countdigits_len
+                syscall
+                call countdigits
+                mov rax, 1
+                mov rdi, 1
+                mov rsi, dnewline
+                mov rdx, dnewlinelen
+                syscall
+                jmp menu
+            menucountdigitsfi:
         jmp menu
         menuexit:
         ret
@@ -549,6 +630,10 @@ power_msg: db 'The value is', 0x3A, ' '
 power_msg_len: equ $-power_msg
 finddigit_msg: db 'The digit is', 0x3A, ' '
 finddigit_msg_len: equ $-finddigit_msg
+countdigits_msg: db 'There are', 0x3A, ' '
+countdigits_msg_len: equ $-countdigits_msg
+countdigits_msg_2: db 'digit', 0x28, 's', 0x29, '.'
+countdigits_msg_len_2: equ $-countdigits_msg_2
 
 menu_msg: db 'Please Choose a method', 0x3A, 0x0A, '1. Factors', 0x0A,'2. GCD', 0x0A, '3. Prime', 0x0A, '4. Power', 0x0A, '5. Find Digit', 0x0A, '6. Down Digits, ', 0x0A, '7. Count Digits, ', 0x0A, '0. Quit', 0x0A
 menu_msg_len: equ $-menu_msg
@@ -564,3 +649,5 @@ menu_input_msg_pow_2: db 'Input a number for the exponent ', 0x28, 'int', 0x29, 
 menu_input_msg_pow_len_2: equ $-menu_input_msg_pow_2
 menu_input_msg_finddigit_2: db 'Input which digit from the right ', 0x28, 'int', 0x29, 0x3A, ' '
 menu_input_msg_finddigit_len_2: equ $-menu_input_msg_finddigit_2
+menu_input_msg_countdigits: db 'Input a number ', 0x28, 'double', 0x29, 0x3A, ' '
+menu_input_msg_countdigits_len: equ $-menu_input_msg_countdigits
