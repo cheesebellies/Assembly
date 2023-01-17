@@ -273,6 +273,49 @@ section .text                               ;Main code
             call pnum
             ret
 
+
+        downdigits:                                   ;Number printing function
+        POP r15                             ;Saving return adress in r15
+        POP r14                             ;Saving number to be printed in r14
+        PUSH r14                            ;Saving number to be printed on stack
+        call cdigits                        ;Counting digits of number
+        POP rbx                             ;Saving number of digits to rbx
+        mov r8, 10                          ;Saving 10 to r8
+        PUSH r8                             ;Saving 10 to stack
+        PUSH rbx                            ;Saving number of digits to stack
+        call pow                            ;Getting 10^number of digits, for use in printing function
+        POP r8                              ;Saving that number to r8
+        mov r9, 10                          ;Saving 10 in r9
+        downdigitswork:                           ;Looping function for actually printing number
+            mov rax, r14                    ;Saving number to print (r14) to rax
+            xor rdx, rdx                    ;Making rdx 0, so division doesnt mess up
+            div r8                          ;Dividing rax by r8
+            mov r10, rax                    ;Saving result to r10
+            imul rax, r8                    ;Multiplying result with r8, so we can subtract it from the number we're printing. EG: num is 123, r8 is 100, rax is 1, then subtracting 100 from 123, so we can loop with 23 as num.
+            sub r14, rax                    ;Subtracting multiplication result from num
+            mov rax, r10                    ;Moving result back to rax
+            add rax, 48                     ;Adding 48 to rax for unicode, otherwise, printing, for example, 1, wouldent print one but unicode char with code 1
+            mov [temp_var], rax             ;Save result of division to variable, for printing
+            mov rax, 1                      ;System write 
+            mov rdi, 1                      ;Stdout 
+            mov rsi, temp_var               ;Message to be sent
+            mov rdx, temp_var_len           ;Message length
+            syscall                         ;Printing message
+            mov rax, 1                      ;System write 
+            mov rdi, 1                      ;Stdout 
+            mov rsi, newline                ;Message to be sent
+            mov rdx, newlinelen             ;Message length
+            syscall                         ;Printing message
+            xor rdx, rdx                    ;Making rdx 0
+            mov rax, r8                     ;Making rax r8
+            div r9                          ;Dividing r8 by 10
+            mov r8, rax                     ;Making r8 the division result, so when looping we keep up with each digit in the number to print
+            mov rax, r14                    ;Moving number to print to rax
+            cmp r8, 0                       ;Comparing it with zero
+            jnz downdigitswork                    ;If it is zero, stop looping, else, loop
+        PUSH r15                            ;Pushing return address to top of stack
+        ret                                 ;Return to location the function was called from
+
                 
 
 
@@ -430,7 +473,19 @@ section .text                               ;Main code
                 syscall
                 jmp menu
             menufinddigitfi:
-
+        cmp rax, 6
+            je menudowndigits
+            jmp menudowndigitsfi
+            menudowndigits:
+                mov rax, 1
+                mov rdi, 1
+                mov rsi, menu_input_msg
+                mov rdx, menu_input_msg_len
+                syscall
+                call input
+                call downdigits
+                jmp menu
+            menudowndigitsfi:
         jmp menu
         menuexit:
         ret
