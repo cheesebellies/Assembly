@@ -253,7 +253,7 @@ section .text                               ;Main code
             POP r8
             POP r9
             PUSH rax
-            mov r10, 2
+            mov r10, 1
             mov r11, 10
             sub r8, r10
             PUSH r9
