@@ -252,27 +252,19 @@ section .text                               ;Main code
 
         finddigit:
             POP rax
-            POP r8
-            POP r9
+            POP r8  ;find
+            POP r9  ;num
             PUSH rax
             mov r10, 10
+            PUSH r8 
             PUSH r9
-            PUSH r10
             PUSH r10
             PUSH r8
             call pow
-            POP r8
             POP r10
             POP r9
-            mov rax, r9
-            xor rdx, rdx
-            div r8
-            PUSH rax
-            mov rax, r8
-            div r10
-            PUSH rdx
-            call pnum
-            ret
+            POP r8
+            
 
 
         downdigits:                                   ;Number printing function
