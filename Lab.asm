@@ -255,12 +255,10 @@ section .text                               ;Main code
             POP r8
             POP r9
             PUSH rax
-            mov r10, 1
-            mov r11, 10
-            sub r8, r10
+            mov r10, 10
             PUSH r9
-            PUSH r11
-            PUSH r11
+            PUSH r10
+            PUSH r10
             PUSH r8
             call pow
             POP r8
@@ -268,8 +266,9 @@ section .text                               ;Main code
             POP r9
             mov rax, r9
             xor rdx, rdx
-            div r10
-            xor rdx, rdx
+            div r8
+            PUSH rax
+            mov rax, r8
             div r10
             PUSH rdx
             call pnum
