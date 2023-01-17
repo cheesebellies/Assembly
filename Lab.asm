@@ -561,7 +561,7 @@ section .text                               ;Main code
             menucountdigits:
                 mov rax, 1
                 mov rdi, 1
-                mov rsi, menu_input_countdigits_msg
+                mov rsi, menu_input_msg_countdigits
                 mov rdx, menu_input_msg_countdigits_len
                 syscall
                 call countdigits
