@@ -16,8 +16,6 @@
 ;               factoring, GCD, exponents, finding 
 ;               digits, printing digits, and counting 
 ;               digits.
-;
-; TIME TO COMPLETE - Most likely over 20 hours total.
 ; *******************************************************
 
 global _start                               ;Linker instructions
