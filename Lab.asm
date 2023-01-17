@@ -484,6 +484,11 @@ section .text                               ;Main code
                 syscall
                 call input
                 call downdigits
+                mov rax, 1
+                mov rdi, 1
+                mov rsi, newline
+                mov rdx, newlinelen
+                syscall
                 jmp menu
             menudowndigitsfi:
         jmp menu
