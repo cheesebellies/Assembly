@@ -10,7 +10,7 @@
 ;
 ; DATE - Started Jan. 12, 2023
 ;
-; ISSUES - Don't use negative or decimal values when inputting numbers. No inputting numbers larger than 19 digits
+; ISSUES - Don't use negative values when inputting numbers. No inputting numbers larger than 19 digits
 ;
 ; DESCRIPTION - Simple mathematic algorithms including 
 ;               factoring, GCD, exponents, finding 
